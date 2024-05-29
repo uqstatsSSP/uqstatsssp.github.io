@@ -13,6 +13,7 @@ parts:
   - file: statistics/8_Hypothesis_Testing_ANOVA.ipynb
   - file: statistics/9_Hypothesis_testing_real_world_data.ipynb
   - file: statistics/HypothesisTesting.ipynb
+  
 - caption: Machine Learning with Python
   chapters:
   - file: Machine_Learning/IntroToMLforHDRans.md
