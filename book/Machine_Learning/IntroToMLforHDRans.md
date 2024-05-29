@@ -1,3 +1,6 @@
+
+## Intro to Machine Learning 
+
 Questions and answers for interative activity during the first seminar on Machine Learning for HDR (Higher Research Degree) students.
 
 ### Question 1:
