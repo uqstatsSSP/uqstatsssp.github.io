@@ -1,0 +1,1408 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Descriptive Statistics &#8212; Statistics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script loading_method="async" src="https://www.googletagmanager.com/gtag/js?id=UA-183782120-1"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-183782120-1');
+            </script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'statistics/3_Descriptive+Statistics';</script>
+    <link rel="shortcut icon" href="../_static/car_sketch.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="None">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../Introduction/intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="1_Exploratory%2BData%2BAnalysis.html">
+                        Plotting for Exploratory data analysis (EDA)
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="1_Exploratory%2BData%2BAnalysis.html">
+                        Plotting for Exploratory data analysis (EDA)
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../Introduction/intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/car_sketch_wide.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistics with Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Exploratory%2BData%2BAnalysis.html">Plotting for Exploratory data analysis (EDA)</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://mybinder.org/v2/gh/uqstatsSSP/uqstatsssp.github.io/master?urlpath=tree/book/statistics/3_Descriptive+Statistics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</a>
+      
+      <li><a href="https://colab.research.google.com/github/uqstatsSSP/uqstatsssp.github.io/blob/master/book/statistics/3_Descriptive+Statistics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io/issues/new?title=Issue%20on%20page%20%2Fstatistics/3_Descriptive+Statistics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io/edit/master/book/statistics/3_Descriptive+Statistics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">suggest edit</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/statistics/3_Descriptive+Statistics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Descriptive Statistics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   <strong>
+    Descriptive Statistics
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-median-and-mode">
+     Mean, Median and Mode
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean">
+       Mean
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#median-middle">
+     Median (middle)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mode">
+     Mode
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variance-and-standard-deviation">
+   Variance and Standard Deviation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variance">
+     Variance
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard-deviation">
+     Standard deviation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#population-vs-sample">
+     Population vs Sample
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#math-notation">
+     Math Notation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#probability-functions">
+   Probability functions
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probability-density-functions">
+     Probability density functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#normal-distibution">
+       Normal distibution
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probability-mass-function">
+     Probability mass function
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-of-data-distributions">
+   Examples of data distributions
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uniform-distribution">
+     Uniform distribution
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normal-gaussian">
+     Normal / Gaussian
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exponential-proability-density-function-power-law">
+     Exponential proability density function / “Power Law”
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#correlation">
+   Correlation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#covariance">
+     Covariance
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pearson-s-correlation">
+     Pearson’s Correlation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spearman-s-correlation">
+     Spearman’s Correlation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#positive-correlation">
+   Positive Correlation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#negative-correlation">
+   Negative Correlation
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="descriptive-statistics">
+<h1><strong>Descriptive Statistics</strong><a class="headerlink" href="#descriptive-statistics" title="Permalink to this headline">#</a></h1>
+<section id="mean-median-and-mode">
+<h2>Mean, Median and Mode<a class="headerlink" href="#mean-median-and-mode" title="Permalink to this headline">#</a></h2>
+<section id="mean">
+<h3>Mean<a class="headerlink" href="#mean" title="Permalink to this headline">#</a></h3>
+<p>Mean is just the average value</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">incomes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">60000</span><span class="p">,</span> <span class="mi">15000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">incomes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>59951.656635059655
+</pre></div>
+</div>
+</div>
+</div>
+<p>Above we generate some sample data with a <strong>normal distribution</strong> (about distributions see below). The <strong>median</strong> point is set to 60000 with <strong>standard deviation</strong> (spread of data) of 15000 and size of 10000 (number of elements)</p>
+<p>We can segment the income data into 50 buckets and plot it as a histogram</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">incomes</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/790cba0d32b4d6f292532ebfaa907b348f29faa4522b9231064f45b553f3f5db.png" src="../_images/790cba0d32b4d6f292532ebfaa907b348f29faa4522b9231064f45b553f3f5db.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="median-middle">
+<h2>Median (middle)<a class="headerlink" href="#median-middle" title="Permalink to this headline">#</a></h2>
+<p>Median is the middle value. If the number of elements in data set is even, we take two middle values and compute their average to get the median. When we analyze the data, we need to look at it’s distribution, if it has many outliers the mean can be skewed and looking at median is more useful.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">incomes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">incomes</span><span class="p">,</span> <span class="p">[</span><span class="mi">1000000000000000</span><span class="p">])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">incomes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>59917.37894546535
+</pre></div>
+</div>
+</div>
+</div>
+<p>Median didn’t change much when we added a giant outlier, but the mean changed a lot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">incomes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99990060945.56207
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mode">
+<h2>Mode<a class="headerlink" href="#mode" title="Permalink to this headline">#</a></h2>
+<p>Mode is just the most common value in a data set</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ages</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ages</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([32, 51, 69, 53, 29, 73, 29, 46, 23, 77, 36, 39, 28, 49, 19, 42, 84,
+       44, 81, 28, 69, 64, 89, 76, 89, 89, 25, 63, 53, 76, 86, 77, 64, 20,
+       62, 86, 85, 62, 47, 50, 24, 74, 66, 56, 37, 69, 40, 73, 62, 34])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="n">ages</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ModeResult(mode=62, count=3)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="variance-and-standard-deviation">
+<h1>Variance and Standard Deviation<a class="headerlink" href="#variance-and-standard-deviation" title="Permalink to this headline">#</a></h1>
+<section id="variance">
+<h2>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">#</a></h2>
+<p>Varience measures how spread out the data is. It’s simply the average of the squared differences from the mean.
+Example: What is the varience of data set (1,4,5,4,8) ?</p>
+<ul class="simple">
+<li><p>first find the mean: (1+4+5+4+8)/5 = 4.4</p></li>
+<li><p>now find the difference from the mean: (-3.4, -0.4, 0.6, -0.4, 3.6)</p></li>
+<li><p>find the squared differences (11.56, 0.16, 0.36, 0.16, 12.96)</p></li>
+<li><p>find the average of the squared differences</p></li>
+<li><p><span class="math notranslate nohighlight">\( Variance = \sigma^2 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( \sigma^2 = (11.56 + 0.16 + 0.36 + 0.16 + 12.96) / 5 = 5.04 \)</span></p></li>
+</ul>
+</section>
+<section id="standard-deviation">
+<h2>Standard deviation<a class="headerlink" href="#standard-deviation" title="Permalink to this headline">#</a></h2>
+<p>Tipically we talk about standard deviation and not variance. Standard deviation is just the square root of the variance.</p>
+<p><span class="math notranslate nohighlight">\( \sigma^2 = 5.04 \)</span></p>
+<p><span class="math notranslate nohighlight">\( \sigma = \sqrt 5.04 = 2.24 \)</span></p>
+<p>Standard deviation is usually used as a way to identify outliers. Data points that lie more than one standard deviation from the mean, can
+be considered unusual.</p>
+<p>You can talk about how extreme a data point is by talking about “how many sigmas” away from the mean it is.</p>
+</section>
+<section id="population-vs-sample">
+<h2>Population vs Sample<a class="headerlink" href="#population-vs-sample" title="Permalink to this headline">#</a></h2>
+<p>If you are working with a sample of data instead of an entire data set (the entire population), then you need to use the <strong>sample variance</strong> instead of <strong>population variance</strong></p>
+<p>For N samples, you just divide the squared varience by N-1 instead of N.</p>
+<p>So, in our example above, we computed population varience like this:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \sigma^2 = (11.56 + 0.16 + 0.36 + 0.16 + 12.96) / 5 = 5.04 \)</span></p></li>
+</ul>
+<p>But the sample variance would be:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( s^2 = (11.56 + 0.16 + 0.36 + 0.16 + 12.96) / 4 = 6.3 \)</span></p></li>
+</ul>
+</section>
+<section id="math-notation">
+<h2>Math Notation<a class="headerlink" href="#math-notation" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>X = data point</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span> = mean</p></li>
+<li><p>Population varience</p></li>
+<li><p><span class="math notranslate nohighlight">\( \sigma^2 = \frac{\Sigma(X - \mu)^2} {N}\)</span></p></li>
+<li><p>Sample variance</p></li>
+<li><p><span class="math notranslate nohighlight">\( s^2 = \frac{\Sigma(X - \mu)^2} {N-1}\)</span></p></li>
+</ul>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># median is at 100, standard deviation is 20, 10000 data points</span>
+<span class="c1"># as we can see if you go left/right from median by 20, graph starts to fall sharply</span>
+<span class="n">hourly_rates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">hourly_rates</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3fa6349c8ece0be4b05320ea409bd4e6a962807796ddc20fa0d49b55b0ba6996.png" src="../_images/3fa6349c8ece0be4b05320ea409bd4e6a962807796ddc20fa0d49b55b0ba6996.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get standard deviation</span>
+<span class="n">hourly_rates</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19.99699511471749
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get variance</span>
+<span class="n">hourly_rates</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>399.87981361803514
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="probability-functions">
+<h1>Probability functions<a class="headerlink" href="#probability-functions" title="Permalink to this headline">#</a></h1>
+<section id="probability-density-functions">
+<h2>Probability density functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this headline">#</a></h2>
+<p>Probabbility of a given range of values occuring in continious data set (infinite)</p>
+<section id="normal-distibution">
+<h3>Normal distibution<a class="headerlink" href="#normal-distibution" title="Permalink to this headline">#</a></h3>
+<p><img alt="Normal Distribution" src="https://dietassessmentprimer.cancer.gov/images/learn/distribution2.jpg" /></p>
+<p>There is a 34.1% chance of range of values occuring between mean and 1 standard deviation to the left and also a 34.1% chance of range of values occuring  between mean and 1 standard deviation to the right.</p>
+</section>
+</section>
+<section id="probability-mass-function">
+<h2>Probability mass function<a class="headerlink" href="#probability-mass-function" title="Permalink to this headline">#</a></h2>
+<p>When we are dealing with discrete data we talk about probability mass function and not probability density function.
+It measures the probabilty of a discrete value occuring in a data set.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="examples-of-data-distributions">
+<h1>Examples of data distributions<a class="headerlink" href="#examples-of-data-distributions" title="Permalink to this headline">#</a></h1>
+<section id="uniform-distribution">
+<h2>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this headline">#</a></h2>
+<p>There is an equal chance of any given value occuring within a specified data range.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b9a929173c72f0e375830e15053123c4ba42af9da0653a2a7070061118cc748e.png" src="../_images/b9a929173c72f0e375830e15053123c4ba42af9da0653a2a7070061118cc748e.png" />
+</div>
+</div>
+</section>
+<section id="normal-gaussian">
+<h2>Normal / Gaussian<a class="headerlink" href="#normal-gaussian" title="Permalink to this headline">#</a></h2>
+<p>Here we are creating a list of values from -3 to 3 with the increment of 0.001, those are our x values on the graph.
+On the y axis there is a probability density function (pdf) for a normal distribution on those x values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f31ddbe50f0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/dda46915bdb29caa5c23de08b5bdd41f61992d6a1d6cb86eed77adb2dbcb8490.png" src="../_images/dda46915bdb29caa5c23de08b5bdd41f61992d6a1d6cb86eed77adb2dbcb8490.png" />
+</div>
+</div>
+<p>Generate some random numbers with a normal distribution. “mu” is the desired mean, “sigma” is the standard deviation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/81197b954ea998d19e360af2c85d8326d2787b1a8a04572692d5155b0ea51df4.png" src="../_images/81197b954ea998d19e360af2c85d8326d2787b1a8a04572692d5155b0ea51df4.png" />
+</div>
+</div>
+</section>
+<section id="exponential-proability-density-function-power-law">
+<h2>Exponential proability density function / “Power Law”<a class="headerlink" href="#exponential-proability-density-function-power-law" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">expon</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="c1">#expon.pdf(x) this maps  values from x to (1.0..0), simulates an exponential drop</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">expon</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f31ddb54250&gt;]
+</pre></div>
+</div>
+<img alt="../_images/69c98c4875a1731e2f2948894082668d65827c8157a9bce1145d7e39110d8b15.png" src="../_images/69c98c4875a1731e2f2948894082668d65827c8157a9bce1145d7e39110d8b15.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="correlation">
+<h1>Correlation<a class="headerlink" href="#correlation" title="Permalink to this headline">#</a></h1>
+<p>Variables within a dataset can be related for lots of reasons.
+For example:</p>
+<ul class="simple">
+<li><p>One variable could cause or depend on the values of another variable.</p></li>
+<li><p>One variable could be lightly associated with another variable.</p></li>
+<li><p>Two variables could depend on a third unknown variable</p></li>
+</ul>
+<p>It can be useful in data analysis and modeling to better understand the relationships between variables. The statistical relationship between two variables is referred to as their correlation.</p>
+<p>A correlation could be positive, meaning both variables move in the same direction, or negative, meaning that when one variable’s value increases, the other variables’ values decrease. Correlation can also be neutral or zero, meaning that the variables are unrelated.</p>
+<ul class="simple">
+<li><p>Positive Correlation: both variables change in the same direction.</p></li>
+<li><p>Neutral Correlation: No relationship in the change of the variables.</p></li>
+<li><p>Negative Correlation: variables change in opposite directions.</p></li>
+</ul>
+<section id="covariance">
+<h2>Covariance<a class="headerlink" href="#covariance" title="Permalink to this headline">#</a></h2>
+<p>Before we can talk about how to compute correlation, we must first talk about covariance. Covariance is a linear relationship between two variables.</p>
+<p>The calculation of the sample covariance between two data points x and y from dataset X and Y is as follows:</p>
+<p>cov(x,y) = <span class="math notranslate nohighlight">\( \frac{\Sigma (x - \mu X) (y - \mu Y)}{n - 1} \)</span></p>
+<p>The sign of the covariance can be interpreted as whether the two variables change in the same direction (positive) or change in different directions (negative). The magnitude of the covariance is not easily interpreted. A covariance value of zero indicates that both variables are completely independent.</p>
+<p>A problem with covariance as a statistical tool alone is that it is challenging to interpret. This leads us to the Pearson’s correlation coefficient next.</p>
+</section>
+<section id="pearson-s-correlation">
+<h2>Pearson’s Correlation<a class="headerlink" href="#pearson-s-correlation" title="Permalink to this headline">#</a></h2>
+<p>The Pearson correlation coefficient (named for Karl Pearson) can be used to summarize the strength of the linear relationship between two data samples.</p>
+<p>The Pearson’s correlation coefficient is calculated as the covariance of the two variables divided by the product of the standard deviation of each data sample. It is the normalization of the covariance between the two variables to give an interpretable score.</p>
+<p>Pearson’s correlation coefficient = covariance(X, Y) / (stdv(X) * stdv(Y))</p>
+<p>The use of mean and standard deviation in the calculation suggests the need for the two data samples to have a Gaussian or Gaussian-like distribution.</p>
+<p>The result of the calculation, the correlation coefficient can be interpreted to understand the relationship.</p>
+<p>The coefficient returns a value between -1 and 1 that represents the limits of correlation from a full negative correlation to a full positive correlation. A value of 0 means no correlation. The value must be interpreted, where often a value below -0.5 or above 0.5 indicates a notable correlation, and values below those values suggests a less notable correlation.</p>
+<p>The pearsonr() SciPy function can be used to calculate the Pearson’s correlation coefficient between two data samples with the same length.</p>
+</section>
+<section id="spearman-s-correlation">
+<h2>Spearman’s Correlation<a class="headerlink" href="#spearman-s-correlation" title="Permalink to this headline">#</a></h2>
+<p>Two variables may be related by a nonlinear relationship, such that the relationship is stronger or weaker across the distribution of the variables.</p>
+<p>Further, the two variables being considered may have a non-Gaussian distribution.</p>
+<p>In this case, the Spearman’s correlation coefficient (named for Charles Spearman) can be used to summarize the strength between the two data samples. This test of relationship can also be used if there is a linear relationship between the variables, but will have slightly less power (e.g. may result in lower coefficient scores).</p>
+<p>As with the Pearson correlation coefficient, the scores are between -1 and 1 for perfectly negatively correlated variables and perfectly positively correlated respectively.</p>
+<p>Instead of calculating the coefficient using covariance and standard deviations on the samples themselves, these statistics are calculated from the relative rank of values on each sample. This is a common approach used in non-parametric statistics, e.g. statistical methods where we do not assume a distribution of the data such as Gaussian.</p>
+<p>Spearman’s correlation coefficient = covariance(rank(X), rank(Y)) / (stdv(rank(X)) * stdv(rank(Y)))</p>
+<p>A linear relationship between the variables is not assumed, although a monotonic relationship is assumed. This is a mathematical name for an increasing or decreasing relationship between the two variables.</p>
+<p>If you are unsure of the distribution and possible relationships between two variables, Spearman correlation coefficient is a good tool to use.</p>
+<p>The spearmanr() SciPy function can be used to calculate the Spearman’s correlation coefficient between two data samples with the same length.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="positive-correlation">
+<h1>Positive Correlation<a class="headerlink" href="#positive-correlation" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">spearmanr</span>
+
+
+<span class="c1"># Load the example tips dataset</span>
+<span class="n">tips</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;tips&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">tips</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     total_bill   tip     sex smoker   day    time  size
+0         16.99  1.01  Female     No   Sun  Dinner     2
+1         10.34  1.66    Male     No   Sun  Dinner     3
+2         21.01  3.50    Male     No   Sun  Dinner     3
+3         23.68  3.31    Male     No   Sun  Dinner     2
+4         24.59  3.61  Female     No   Sun  Dinner     4
+..          ...   ...     ...    ...   ...     ...   ...
+239       29.03  5.92    Male     No   Sat  Dinner     3
+240       27.18  2.00  Female    Yes   Sat  Dinner     2
+241       22.67  2.00    Male    Yes   Sat  Dinner     2
+242       17.82  1.75    Male     No   Sat  Dinner     2
+243       18.78  3.00  Female     No  Thur  Dinner     2
+
+[244 rows x 7 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scatter plot of tips[&#39;total_bill&#39;]) and MPG (y)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tips</span><span class="p">[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">],</span>  <span class="n">tips</span><span class="p">[</span><span class="s1">&#39;tip&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Total bill&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Tip&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Relationship between Total bill and Tip&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/96810fd9d485cb433474293a1008a2bdc50b2476e6253218d63cc73bc7d7e9e9.png" src="../_images/96810fd9d485cb433474293a1008a2bdc50b2476e6253218d63cc73bc7d7e9e9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the covariance</span>
+<span class="n">covariance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">tips</span><span class="p">[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">],</span> <span class="n">tips</span><span class="p">[</span><span class="s1">&#39;tip&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Covariance:</span><span class="se">\n</span><span class="si">{</span><span class="n">covariance</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">covariance</span><span class="p">)</span>
+
+<span class="c1"># Calculate the correlation</span>
+<span class="n">correlation</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">tips</span><span class="p">[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">],</span> <span class="n">tips</span><span class="p">[</span><span class="s1">&#39;tip&#39;</span><span class="p">])</span>
+<span class="n">correlation1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">spearmanr</span><span class="p">(</span><span class="n">tips</span><span class="p">[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">],</span> <span class="n">tips</span><span class="p">[</span><span class="s1">&#39;tip&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Pearson Correlation: </span><span class="si">{</span><span class="n">correlation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Spearman Correlation: </span><span class="si">{</span><span class="n">correlation1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance:
+[[79.25293861  8.32350163]
+ [ 8.32350163  1.91445464]]
+
+Pearson Correlation: 0.6757341092113647
+
+Spearman Correlation: 0.6789681219001009
+</pre></div>
+</div>
+<img alt="../_images/67d78047743988c94c85f10a68bf404fe5c899a66254619282f1445124ff2de2.png" src="../_images/67d78047743988c94c85f10a68bf404fe5c899a66254619282f1445124ff2de2.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="negative-correlation">
+<h1>Negative Correlation<a class="headerlink" href="#negative-correlation" title="Permalink to this headline">#</a></h1>
+<p>Lets take dataset mpg (miles per gallon) dataset. This dataset contains car attributes like cylinders, horsepower, and weight. We would expect that as the weight of a car increases, its miles per gallon (fuel efficiency) decreases, indicating a negative correlation.</p>
+<p>Here’s how you could perform this analysis in Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">spearmanr</span>
+
+<span class="c1"># Load the mpg dataset</span>
+<span class="n">mpg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;mpg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mpg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      mpg  cylinders  displacement  horsepower  weight  acceleration  \
+0    18.0          8         307.0       130.0    3504          12.0   
+1    15.0          8         350.0       165.0    3693          11.5   
+2    18.0          8         318.0       150.0    3436          11.0   
+3    16.0          8         304.0       150.0    3433          12.0   
+4    17.0          8         302.0       140.0    3449          10.5   
+..    ...        ...           ...         ...     ...           ...   
+393  27.0          4         140.0        86.0    2790          15.6   
+394  44.0          4          97.0        52.0    2130          24.6   
+395  32.0          4         135.0        84.0    2295          11.6   
+396  28.0          4         120.0        79.0    2625          18.6   
+397  31.0          4         119.0        82.0    2720          19.4   
+
+     model_year  origin                       name  
+0            70     usa  chevrolet chevelle malibu  
+1            70     usa          buick skylark 320  
+2            70     usa         plymouth satellite  
+3            70     usa              amc rebel sst  
+4            70     usa                ford torino  
+..          ...     ...                        ...  
+393          82     usa            ford mustang gl  
+394          82  europe                  vw pickup  
+395          82     usa              dodge rampage  
+396          82     usa                ford ranger  
+397          82     usa                 chevy s-10  
+
+[392 rows x 9 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the correlation</span>
+<span class="n">correlation</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">mpg</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">],</span> <span class="n">mpg</span><span class="p">[</span><span class="s1">&#39;mpg&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Pearson Correlation: </span><span class="si">{</span><span class="n">correlation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">correlation1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">spearmanr</span><span class="p">(</span><span class="n">mpg</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">],</span> <span class="n">mpg</span><span class="p">[</span><span class="s1">&#39;mpg&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Spearman Correlation: </span><span class="si">{</span><span class="n">correlation1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Scatter plot of Weight (x) and MPG (y)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">mpg</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">],</span> <span class="n">mpg</span><span class="p">[</span><span class="s1">&#39;mpg&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Weight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;MPG&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Relationship between Car Weight and MPG&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Pearson Correlation: -0.8322442148315753
+ Spearman Correlation: -0.8755851198739869
+</pre></div>
+</div>
+<img alt="../_images/1e8ec319b6a30735fb5340145470a447d6846477ab402398d78982a14ea05602.png" src="../_images/1e8ec319b6a30735fb5340145470a447d6846477ab402398d78982a14ea05602.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "uqstatsSSP/uqstatsssp.github.io",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./statistics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   <strong>
+    Descriptive Statistics
+   </strong>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-median-and-mode">
+     Mean, Median and Mode
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean">
+       Mean
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#median-middle">
+     Median (middle)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mode">
+     Mode
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variance-and-standard-deviation">
+   Variance and Standard Deviation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variance">
+     Variance
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard-deviation">
+     Standard deviation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#population-vs-sample">
+     Population vs Sample
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#math-notation">
+     Math Notation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#probability-functions">
+   Probability functions
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probability-density-functions">
+     Probability density functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#normal-distibution">
+       Normal distibution
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probability-mass-function">
+     Probability mass function
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-of-data-distributions">
+   Examples of data distributions
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uniform-distribution">
+     Uniform distribution
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normal-gaussian">
+     Normal / Gaussian
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exponential-proability-density-function-power-law">
+     Exponential proability density function / “Power Law”
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#correlation">
+   Correlation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#covariance">
+     Covariance
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pearson-s-correlation">
+     Pearson’s Correlation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spearman-s-correlation">
+     Spearman’s Correlation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#positive-correlation">
+   Positive Correlation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#negative-correlation">
+   Negative Correlation
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://github.com/thomasfermi/Algorithms-for-Automated-Driving/blob/master/CONTRIBUTORS.md">Mario Theers and Mankaran Singh</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
