@@ -1,3 +1,5 @@
+format: jb-book
+root: Introduction/intro
 parts:
 - caption: Statistics with Python
   chapters:
