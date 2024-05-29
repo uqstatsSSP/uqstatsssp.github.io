@@ -145,8 +145,15 @@ const thebe_selector_output = ".output, .cell_output"
     <ul id="navbar-main-elements" class="navbar-nav">
         
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="1_Exploratory%2BData%2BAnalysis.html">
-                        Plotting for Exploratory data analysis (EDA)
+                      <a class="nav-link nav-internal" href="../Machine_Learning/IntroToMLforHDRans.html">
+                        Question 1:
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Machine_Learning/machine_learning_faqs.html">
+                        Machine learning FAQs
                       </a>
                     </li>
                 
@@ -221,8 +228,15 @@ const thebe_selector_output = ".output, .cell_output"
     <ul id="navbar-main-elements" class="navbar-nav">
         
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="1_Exploratory%2BData%2BAnalysis.html">
-                        Plotting for Exploratory data analysis (EDA)
+                      <a class="nav-link nav-internal" href="../Machine_Learning/IntroToMLforHDRans.html">
+                        Question 1:
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Machine_Learning/machine_learning_faqs.html">
+                        Machine learning FAQs
                       </a>
                     </li>
                 
@@ -286,13 +300,16 @@ const thebe_selector_output = ".output, .cell_output"
     </div>
     <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistics with Python</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning with Python</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="1_Exploratory%2BData%2BAnalysis.html">Plotting for Exploratory data analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Machine_Learning/IntroToMLforHDRans.html">Question 1:</a></li>
 
 
 
 
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Machine_Learning/machine_learning_faqs.html">Machine learning FAQs</a></li>
 </ul>
 
     </div>
@@ -616,7 +633,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([20, 20, 24, 35, 35, 40, 26, 27, 18, 23])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([35, 14, 70, 28, 28, 35, 10, 20, 28, 32])
 </pre></div>
 </div>
 </div>
@@ -642,7 +659,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.20830123967080263
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
 </pre></div>
 </div>
 </div>
@@ -793,18 +810,100 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>  
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">tiktok_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/tiktok.csv&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">tiktok_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
-</pre></div>
-</div>
-</div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>track_id</th>
+      <th>track_name</th>
+      <th>artist_id</th>
+      <th>artist_name</th>
+      <th>album_id</th>
+      <th>duration</th>
+      <th>release_date</th>
+      <th>popularity</th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>...</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>playlist_id</th>
+      <th>playlist_name</th>
+      <th>duration_mins</th>
+      <th>genre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6kVuF2PYLuvl9T85XjNbaO</td>
+      <td>Lay It Down Gmix - Main</td>
+      <td>1Xfmvd48oOhEWkscWyEbh9</td>
+      <td>Lloyd</td>
+      <td>43C6GVlhXG4KfZuEbxty3r</td>
+      <td>302186</td>
+      <td>2011-01-01</td>
+      <td>28</td>
+      <td>0.597</td>
+      <td>0.800</td>
+      <td>...</td>
+      <td>0.3120</td>
+      <td>0.0461</td>
+      <td>0.0</td>
+      <td>0.180</td>
+      <td>0.565</td>
+      <td>155.932</td>
+      <td>6kVuF2PYLuvl9T85XjNbaO</td>
+      <td>6kVuF2PYLuvl9T85XjNbaO</td>
+      <td>5.036433</td>
+      <td>TIKTOK DANCE</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1RGIjMFMgJxkZHMDXVYzOJ</td>
+      <td>Bartender (feat. Akon)</td>
+      <td>3aQeKQSyrW4qWr35idm0cy</td>
+      <td>T-Pain</td>
+      <td>6CrSEKCF4TYrbSIitegb3h</td>
+      <td>238800</td>
+      <td>2007-06-05</td>
+      <td>75</td>
+      <td>0.832</td>
+      <td>0.391</td>
+      <td>...</td>
+      <td>0.0628</td>
+      <td>0.0564</td>
+      <td>0.0</td>
+      <td>0.224</td>
+      <td>0.436</td>
+      <td>104.961</td>
+      <td>1RGIjMFMgJxkZHMDXVYzOJ</td>
+      <td>1RGIjMFMgJxkZHMDXVYzOJ</td>
+      <td>3.980000</td>
+      <td>TIKTOK DANCE</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 23 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -904,7 +1003,7 @@ Doja 0.7826739130434782 0.07237146373082283
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;danceability&#39;, ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/11773bf8ed957521cb1f6c4c620768a728883dc7a1200b0113af85a5188b3e9e.png" src="../_images/11773bf8ed957521cb1f6c4c620768a728883dc7a1200b0113af85a5188b3e9e.png" />
+<img alt="../_images/eafce1b7f8436ae821137fb7c540cbde5c5f29e4fa75f03289effa2cfa462fd2.png" src="../_images/eafce1b7f8436ae821137fb7c540cbde5c5f29e4fa75f03289effa2cfa462fd2.png" />
 </div>
 </div>
 </section>
