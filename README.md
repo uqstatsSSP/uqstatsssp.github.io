@@ -1,41 +1,38 @@
 # README
 
-This is the readme. It has nothing in it yet.
+# Statistics with Python
 
-Statistics with Python: https://uqstatsssp.github.io/statistics_with_python
+If you need to use Python for your research, you may find the following resources helpful for working with statistics in Python:
 
+## Libraries
 
+- [NumPy](https://numpy.org/)[↗](https://stats.stackexchange.com/) is a library for working with arrays and matrices, often used for scientific computing
+- [Pandas](https://pandas.pydata.org/)↗  is a library for data manipulation and analysis
+- [SciPy](https://www.scipy.org/)↗ is a library for scientific and technical computing, including statistical analysis
+- [Matplotlib](https://matplotlib.org/)↗ is a library for creating visualizations in Python
+- [StatsModels](https://www.statsmodels.org/stable/index.html)↗ is a library for statistical modeling and analysis, including regression analysis and time series analysis
+- [Seaborn](https://seaborn.pydata.org/)↗ is a library for creating beautiful visualizations in Python, often used for statistical graphics
+- [Scikit-learn](https://scikit-learn.org/stable/)↗ is a library for machine learning in Python, including various statistical models and algorithms
 
+## Tutorials and Documentation
 
-Presentation: https://uqstatsssp.github.io/statistics_with_python.pdf
+- [NumPy Quickstart Tutorial](https://numpy.org/doc/stable/user/quickstart.html)↗A Quick Introduction to NumPy
+- [Pandas Documentation](https://pandas.pydata.org/docs/)↗ Comprehensive documentation for the Pandas library
+- [Matplotlib Tutorials](https://matplotlib.org/stable/tutorials/index.html)↗ A collection of tutorials for Matplotlib
 
-Machine Learning FAQs: https://uqstatsssp.github.io/machine_learning_faqs
+## Online Courses
 
-Algorithms for Automated Driving
-============================
+- [DataCamp: Statistical Thinking in Python](https://www.datacamp.com/courses/statistical-thinking-in-python-part-1)↗ an introduction to statistical thinking with Python
+- [Coursera: Applied Data Science with Python](https://www.coursera.org/specializations/data-science-python)↗, a series of courses covering various aspects of data science with Python
 
-![](book/Introduction/carla_vehicle_lanes.jpg "")
+## Communities
 
-Each chapter of this (mini-)book guides you in programming one important software component for automated driving. 
-Currently, this book contains three chapters: **Lane Detection**, **Control** and **Camera Calibration**. You will implement software that 
-* detects lane boundaries from a camera image using deep learning
-* controls steering wheel and throttle to keep the vehicle within the detected lane at the desired speed
-* determines how the camera is positioned and oriented with respect to the vehicle (a prerequisite to properly join the lane detection and the control module)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/python)↗ is a website where you can ask and answer programming questions, including those related to statistics in Python
+- [/r/learnpython](https://www.reddit.com/r/learnpython/)↗ is a subreddit for learning and discussing Python
 
-The software you will write is in python, and you will apply it in the [open-source driving simulator CARLA](https://carla.org/). Ideally, your computer is powerful enough to run CARLA, but if it is not, you can still work through the exercises. For the exercise on control there is a simplistic simulator that comes with this course. We recommend to work through the chapters in order, but if you want to, you can read the **Control** chapter, before the **Lane Detection** chapter.
+## Additional Resources
 
-To work through this book, you
-* should understand the following math and physics concepts: derivative, integral, trigonometry, sine/cosine of an angle, matrix, vector, coordinate system, velocity, acceleration, angular velocity, cross product, rotation matrix
-* should be familiar with programming in python. In particular, you should be comfortable with multidimensional arrays in numpy. You do **not** need a powerful computer (see [Exercise Setup](https://thomasfermi.github.io/Algorithms-for-Automated-Driving/Appendix/ExerciseSetup.html))
-* need to know what supervised learning is, and how to train a neural network with a deep learning framework like pytorch, fastai, tensorflow, keras, or something similar. This prerequisite is only necessary for the chapter on lane detection. If you do not fulfill it, you can skip this chapter, or study one of the [courses I recommend](https://thomasfermi.github.io/Algorithms-for-Automated-Driving/LaneDetection/Segmentation.html) and then come back here.
+- [Python for Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/)↗ A comprehensive guide to using Python for data science, including statistical analysis
+- [Python Data Science Handbook GitHub Repository](https://github.com/jakevdp/PythonDataScienceHandbook)↗ The GitHub repository for the above book, which includes code examples and Jupyter notebooks
 
-If you find a bug in the exercise code or some confusing explanations in the book, please [raise an issue on github](https://github.com/thomasfermi/Algorithms-for-Automated-Driving). If you have questions about the material or want to connect with me or other students, please use [github discussions](https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions). Once you finish the book or decide to stop working through it, please consider giving me some feedback by filling out [this questionnaire](https://forms.gle/TioqZiUsB5e5wSVG7) (If you open the link in your browser's incognito mode, the questionnaire should be anonymous).
-
-## Read the book!
-Please follow this [link](https://thomasfermi.github.io/Algorithms-for-Automated-Driving/Introduction/intro.html)!
-
-## Discord
-As of 2021, we have a discord server 🥳. Please follow this [link](https://discord.gg/57YEzkCFHN) to join the community!
-
-## Help wanted!
-Are you interested in contributing to the book by adding a new chapter? Or do you have other ideas for improvements? Please let us know by joining the discussion [on github](https://github.com/thomasfermi/Algorithms-for-Automated-Driving/discussions/4)!
+[Examples- Statistics with Python](Examples-%20Statistics%20with%20Python%2031c8129c2cc347cdb76d7255d146b23a.md)
