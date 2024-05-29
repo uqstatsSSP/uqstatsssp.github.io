@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; Statistics with Python</title>
+    <title>Sampling and Central Limit Theorem &#8212; Statistics with Python</title>
   
   
   
@@ -68,6 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
                 gtag('config', 'UA-183782120-1');
             </script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'statistics/4_Sampling-and-CLT';</script>
+    <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Confidence Intervals" href="5_Confidence%2Bintervals.html" />
@@ -126,8 +127,9 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
   
-    <p class="title logo__title">Statistics with Python</p>
   
 </a>
     
@@ -167,7 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="#">
-                        <no title>
+                        Sampling and Central Limit Theorem
                       </a>
                     </li>
                 
@@ -285,10 +287,6 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
-  <label class="sidebar-toggle secondary-toggle" for="__secondary">
-      <span class="fa-solid fa-outdent"></span>
-  </label>
-  
 
 </div>
   </nav>
@@ -335,7 +333,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="#">
-                        <no title>
+                        Sampling and Central Limit Theorem
                       </a>
                     </li>
                 
@@ -455,8 +453,9 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
   
-    <p class="title logo__title">Statistics with Python</p>
   
 </a>
     </div>
@@ -478,7 +477,7 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistics with Python</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1_Exploratory%2BData%2BAnalysis.html">Plotting for Exploratory data analysis (EDA)</a></li>
 
 
@@ -492,6 +491,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l1"><a class="reference internal" href="3_Excercise%2BHaberman.html">Excercise on Heberman Cancer dataset</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Sampling and Central Limit Theorem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5_Confidence%2Bintervals.html">Confidence Intervals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_Hypothesis_Testing_t_test.html">T Test</a></li>
 
@@ -715,9 +715,7 @@ title="Print to PDF"
       
   </ul>
 </div>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
-            <span class="fa-solid fa-list"></span>
-        </label>
+
     </div>
 </div>
             </div>
@@ -725,26 +723,20 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Sampling and Central Limit Theorem</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
 
             <article class="bd-article" role="main">
               
-  <p>The Central Limit Theorem (CLT) states that the distribution of sample means approximates a normal distribution as the sample size becomes larger, regardless of the shape of the population distribution.​</p>
+  <section id="sampling-and-central-limit-theorem">
+<h1>Sampling and Central Limit Theorem<a class="headerlink" href="#sampling-and-central-limit-theorem" title="Permalink to this headline">#</a></h1>
+<p>The Central Limit Theorem (CLT) states that the distribution of sample means approximates a normal distribution as the sample size becomes larger, regardless of the shape of the population distribution.​</p>
 <p>It establishes that for independent and indentically disributed random variables, the sampling distribution of the standarized sample mean tends towards the standard normal distribution, even if the original variables themselves are not normally distributed.</p>
 <p>In other words, suppose that a large sample of observations is obtained, each observation being randomly produced in a way that does not depend on the values of the other observations, and that the average (airthmetic mean) of the observed values is computed. If this procedure is performed many times, resulting in a collection of observed averages, the central limit theorem says that if the sample size was large enough, the probability distribution of these averages will closely approximate a normal distribution.</p>
 <p>Let’s use a Python simulation to demonstrate the Central Limit Theorem (CLT) with randomly generated patient data. For the sake of simplicity, we’ll assume the distribution of patient stays follows a non-normal distribution (let’s say, a gamma distribution, which can model waiting times).</p>
@@ -768,10 +760,9 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd19e11dd80&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x74d069c9e830&gt;]
 </pre></div>
 </div>
-<img alt="../_images/40955d5b6f43279956ed926ba024d99b74a15c270091102e83d75c1b5a54a373.png" src="../_images/40955d5b6f43279956ed926ba024d99b74a15c270091102e83d75c1b5a54a373.png" />
 </div>
 </div>
 <p>Now, we’ll repeatedly sample from this population and record the sample means:</p>
@@ -827,6 +818,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -876,22 +868,6 @@ title="Print to PDF"
           </div>
           
           
-          
-            <div class="bd-sidebar-secondary bd-toc">
-              
-<div class="toc-item">
-  
-<div class="tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-</div>
-<nav id="bd-toc-nav" class="page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-</nav>
-</div>
-
-            </div>
           
           
         </div>

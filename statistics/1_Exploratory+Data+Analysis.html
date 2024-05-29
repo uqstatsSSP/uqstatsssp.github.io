@@ -68,6 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
                 gtag('config', 'UA-183782120-1');
             </script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'statistics/1_Exploratory+Data+Analysis';</script>
+    <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Descriptive Statistics" href="3_Descriptive%2BStatistics.html" />
@@ -126,8 +127,9 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
   
-    <p class="title logo__title">Statistics with Python</p>
   
 </a>
     
@@ -167,7 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="4_Sampling-and-CLT.html">
-                        <no title>
+                        Sampling and Central Limit Theorem
                       </a>
                     </li>
                 
@@ -335,7 +337,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="4_Sampling-and-CLT.html">
-                        <no title>
+                        Sampling and Central Limit Theorem
                       </a>
                     </li>
                 
@@ -455,8 +457,9 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
   
-    <p class="title logo__title">Statistics with Python</p>
   
 </a>
     </div>
@@ -492,6 +495,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l1"><a class="reference internal" href="3_Excercise%2BHaberman.html">Excercise on Heberman Cancer dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_Sampling-and-CLT.html">Sampling and Central Limit Theorem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5_Confidence%2Bintervals.html">Confidence Intervals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_Hypothesis_Testing_t_test.html">T Test</a></li>
 
@@ -837,10 +841,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2024-05-29 13:25:04--  https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.108.133, 185.199.109.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2024-05-29 13:30:25--  https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response... 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
 Length: 3716 (3.6K) [text/plain]
 Saving to: ‘iris.csv’
 
@@ -848,20 +855,20 @@ Saving to: ‘iris.csv’
 iris.csv              0%[                    ]       0  --.-KB/s               
 iris.csv            100%[===================&gt;]   3.63K  --.-KB/s    in 0s      
 
-2024-05-29 13:25:04 (57.0 MB/s) - ‘iris.csv’ saved [3716/3716]
+2024-05-29 13:30:25 (50.6 MB/s) - ‘iris.csv’ saved [3716/3716]
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting statsmodels
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading statsmodels-0.14.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.5 kB)
-Requirement already satisfied: numpy&lt;2,&gt;=1.18 in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (from statsmodels) (1.23.5)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&lt;2,&gt;=1.18 in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (from statsmodels) (1.23.5)
 Requirement already satisfied: scipy!=1.9.2,&gt;=1.4 in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (from statsmodels) (1.10.1)
 Requirement already satisfied: pandas!=2.1.0,&gt;=1.0 in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (from statsmodels) (2.0.3)
 Collecting patsy&gt;=0.5.4 (from statsmodels)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading patsy-0.5.6-py2.py3-none-any.whl.metadata (3.5 kB)
+  Downloading patsy-0.5.6-py2.py3-none-any.whl.metadata (3.5 kB)
 Requirement already satisfied: packaging&gt;=21.3 in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (from statsmodels) (24.0)
 </pre></div>
 </div>
@@ -869,21 +876,21 @@ Requirement already satisfied: packaging&gt;=21.3 in /opt/hostedtoolcache/Python
 Requirement already satisfied: pytz&gt;=2020.1 in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (from pandas!=2.1.0,&gt;=1.0-&gt;statsmodels) (2024.1)
 Requirement already satisfied: tzdata&gt;=2022.1 in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (from pandas!=2.1.0,&gt;=1.0-&gt;statsmodels) (2024.1)
 Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (from patsy&gt;=0.5.4-&gt;statsmodels) (1.16.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading statsmodels-0.14.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.9 MB)
+Downloading statsmodels-0.14.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.9 MB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/10.9 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.2/10.9 MB</span> <span class=" -Color -Color-Red">97.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━ <span class=" -Color -Color-Green">8.9/10.9 MB</span> <span class=" -Color -Color-Red">128.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">2.9/10.9 MB</span> <span class=" -Color -Color-Red">86.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">10.9/10.9 MB</span> <span class=" -Color -Color-Red">151.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">10.9/10.9 MB</span> <span class=" -Color -Color-Red">107.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━ <span class=" -Color -Color-Green">7.7/10.9 MB</span> <span class=" -Color -Color-Red">112.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">10.9/10.9 MB</span> <span class=" -Color -Color-Red">143.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">10.9/10.9 MB</span> <span class=" -Color -Color-Red">103.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hDownloading patsy-0.5.6-py2.py3-none-any.whl (233 kB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/233.9 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">233.9/233.9 kB</span> <span class=" -Color -Color-Red">56.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">233.9/233.9 kB</span> <span class=" -Color -Color-Red">52.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
