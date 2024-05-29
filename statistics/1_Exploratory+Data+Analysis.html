@@ -765,82 +765,16 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#histograms-and-probability-density-functions-pdf-using-kde">
      Histograms and Probability Density Functions (PDF) using KDE
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#how-to-compute-pdfs-using-counts-frequencies-of-data-points-in-each-window">
-       How to compute PDFs using counts/frequencies of data points in each window.
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#how-window-width-effects-the-pdf-plot">
-       How window width effects the PDF plot.
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interpreting-a-pdf">
      Interpreting a PDF:
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#why-is-it-called-a-density-plot">
-       why is it called a density plot?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#why-is-it-called-a-probability-plot">
-       Why is it called a probability plot?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#for-each-value-of-petal-length-what-does-the-value-on-y-axis-mean">
-       for each value of petal_length, what does the value on y-axis mean?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#notice-that-we-can-write-a-simple-if-else-condition-as-if-petal-length-2-5-then-flower-type-is-setosa">
-       Notice that we can write a simple if..else condition as if(petal_length) &lt; 2.5 then flower type is setosa.
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#using-just-one-feature-we-can-build-a-simple-model-using-if-else-statements">
-       Using just one feature, we can build a simple “model” using if..else… statements.
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#disadv-of-pdf-can-we-say-what-percentage-of-versicolor-points-have-a-petal-length-of-less-than-5">
      Disadv of PDF: Can we say what percentage of versicolor points have a petal_length of less than 5?
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#do-some-of-these-plots-look-like-a-bell-curve-you-studied-in-under-grad">
-       Do some of these plots look like a bell-curve you studied in under-grad?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#gaussian-normal-distribution">
-       Gaussian/Normal distribution.
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#what-is-normal-about-normal-distribution">
-       What is “normal” about normal distribution?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#e-g-heights-of-male-students-in-a-class">
-       e.g: Heights of male students in a class.
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#one-of-the-most-frequent-distributions-in-nature">
-       One of the most frequent distributions in nature.
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -890,9 +824,9 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2024-05-29 08:18:00--  https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.108.133, 185.199.109.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2024-05-29 08:22:37--  https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.111.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
 HTTP request sent, awaiting response... 
 </pre></div>
 </div>
@@ -904,20 +838,20 @@ Saving to: ‘iris.csv’
 iris.csv              0%[                    ]       0  --.-KB/s               
 iris.csv            100%[===================&gt;]   3.63K  --.-KB/s    in 0s      
 
-2024-05-29 08:18:00 (44.5 MB/s) - ‘iris.csv’ saved [3716/3716]
+2024-05-29 08:22:37 (59.1 MB/s) - ‘iris.csv’ saved [3716/3716]
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting statsmodels
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading statsmodels-0.14.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.5 kB)
-Requirement already satisfied: numpy&lt;2,&gt;=1.18 in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (from statsmodels) (1.23.5)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&lt;2,&gt;=1.18 in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (from statsmodels) (1.23.5)
 Requirement already satisfied: scipy!=1.9.2,&gt;=1.4 in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (from statsmodels) (1.10.1)
 Requirement already satisfied: pandas!=2.1.0,&gt;=1.0 in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (from statsmodels) (2.0.3)
 Collecting patsy&gt;=0.5.4 (from statsmodels)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading patsy-0.5.6-py2.py3-none-any.whl.metadata (3.5 kB)
+  Downloading patsy-0.5.6-py2.py3-none-any.whl.metadata (3.5 kB)
 Requirement already satisfied: packaging&gt;=21.3 in /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages (from statsmodels) (24.0)
 </pre></div>
 </div>
@@ -929,26 +863,17 @@ Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.8.18/x64/lib
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading statsmodels-0.14.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.9 MB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/10.9 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   ━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.6/10.9 MB</span> <span class=" -Color -Color-Red">48.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.2/10.9 MB</span> <span class=" -Color -Color-Red">7.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6.0/10.9 MB</span> <span class=" -Color -Color-Red">88.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.2/10.9 MB</span> <span class=" -Color -Color-Red">20.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">4.3/10.9 MB</span> <span class=" -Color -Color-Red">42.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6.7/10.9 MB</span> <span class=" -Color -Color-Red">49.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━ <span class=" -Color -Color-Green">9.2/10.9 MB</span> <span class=" -Color -Color-Red">53.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">10.9/10.9 MB</span> <span class=" -Color -Color-Red">69.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">10.9/10.9 MB</span> <span class=" -Color -Color-Red">58.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">10.9/10.9 MB</span> <span class=" -Color -Color-Red">128.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">10.9/10.9 MB</span> <span class=" -Color -Color-Red">95.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hDownloading patsy-0.5.6-py2.py3-none-any.whl (233 kB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/233.9 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">233.9/233.9 kB</span> <span class=" -Color -Color-Red">51.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">233.9/233.9 kB</span> <span class=" -Color -Color-Red">50.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -956,8 +881,9 @@ Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.8.18/x64/lib
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed patsy-0.5.6 statsmodels-0.14.1
-
-<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">23.0.1</span> -&gt; <span class=" -Color -Color-Green">24.0</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">23.0.1</span> -&gt; <span class=" -Color -Color-Green">24.0</span>
 <span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">pip install --upgrade pip</span>
 </pre></div>
 </div>
@@ -1173,47 +1099,24 @@ Name: count, dtype: int64
 </div>
 <section id="histograms-and-probability-density-functions-pdf-using-kde">
 <h2>Histograms and Probability Density Functions (PDF) using KDE<a class="headerlink" href="#histograms-and-probability-density-functions-pdf-using-kde" title="Permalink to this headline">#</a></h2>
-<section id="how-to-compute-pdfs-using-counts-frequencies-of-data-points-in-each-window">
-<h3>How to compute PDFs using counts/frequencies of data points in each window.<a class="headerlink" href="#how-to-compute-pdfs-using-counts-frequencies-of-data-points-in-each-window" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="how-window-width-effects-the-pdf-plot">
-<h3>How window width effects the PDF plot.<a class="headerlink" href="#how-window-width-effects-the-pdf-plot" title="Permalink to this headline">#</a></h3>
-</section>
+<p>How to compute PDFs using counts/frequencies of data points in each window.
+How window width effects the PDF plot.</p>
 </section>
 <section id="interpreting-a-pdf">
 <h2>Interpreting a PDF:<a class="headerlink" href="#interpreting-a-pdf" title="Permalink to this headline">#</a></h2>
-<section id="why-is-it-called-a-density-plot">
-<h3>why is it called a density plot?<a class="headerlink" href="#why-is-it-called-a-density-plot" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="why-is-it-called-a-probability-plot">
-<h3>Why is it called a probability plot?<a class="headerlink" href="#why-is-it-called-a-probability-plot" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="for-each-value-of-petal-length-what-does-the-value-on-y-axis-mean">
-<h3>for each value of petal_length, what does the value on y-axis mean?<a class="headerlink" href="#for-each-value-of-petal-length-what-does-the-value-on-y-axis-mean" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="notice-that-we-can-write-a-simple-if-else-condition-as-if-petal-length-2-5-then-flower-type-is-setosa">
-<h3>Notice that we can write a simple if..else condition as if(petal_length) &lt; 2.5 then flower type is setosa.<a class="headerlink" href="#notice-that-we-can-write-a-simple-if-else-condition-as-if-petal-length-2-5-then-flower-type-is-setosa" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="using-just-one-feature-we-can-build-a-simple-model-using-if-else-statements">
-<h3>Using just one feature, we can build a simple “model” using if..else… statements.<a class="headerlink" href="#using-just-one-feature-we-can-build-a-simple-model-using-if-else-statements" title="Permalink to this headline">#</a></h3>
-</section>
+<p>why is it called a density plot?
+Why is it called a probability plot?
+for each value of petal_length, what does the value on y-axis mean?
+Notice that we can write a simple if..else condition as if(petal_length) &lt; 2.5 then flower type is setosa.
+Using just one feature, we can build a simple “model” using if..else… statements.</p>
 </section>
 <section id="disadv-of-pdf-can-we-say-what-percentage-of-versicolor-points-have-a-petal-length-of-less-than-5">
 <h2>Disadv of PDF: Can we say what percentage of versicolor points have a petal_length of less than 5?<a class="headerlink" href="#disadv-of-pdf-can-we-say-what-percentage-of-versicolor-points-have-a-petal-length-of-less-than-5" title="Permalink to this headline">#</a></h2>
-<section id="do-some-of-these-plots-look-like-a-bell-curve-you-studied-in-under-grad">
-<h3>Do some of these plots look like a bell-curve you studied in under-grad?<a class="headerlink" href="#do-some-of-these-plots-look-like-a-bell-curve-you-studied-in-under-grad" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="gaussian-normal-distribution">
-<h3>Gaussian/Normal distribution.<a class="headerlink" href="#gaussian-normal-distribution" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="what-is-normal-about-normal-distribution">
-<h3>What is “normal” about normal distribution?<a class="headerlink" href="#what-is-normal-about-normal-distribution" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="e-g-heights-of-male-students-in-a-class">
-<h3>e.g: Heights of male students in a class.<a class="headerlink" href="#e-g-heights-of-male-students-in-a-class" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="one-of-the-most-frequent-distributions-in-nature">
-<h3>One of the most frequent distributions in nature.<a class="headerlink" href="#one-of-the-most-frequent-distributions-in-nature" title="Permalink to this headline">#</a></h3>
+<p>Do some of these plots look like a bell-curve you studied in under-grad?
+Gaussian/Normal distribution.
+What is “normal” about normal distribution?
+e.g: Heights of male students in a class.
+One of the most frequent distributions in nature.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CDF(Cummulative distribution function) plot for PetalLengthCm</span>
@@ -1230,7 +1133,6 @@ Name: count, dtype: int64
 <img alt="../_images/0ecd283fef1d8c7b98b5da691f06ca108cbf3d0cbe5dd50f05e222e3277b78f6.png" src="../_images/0ecd283fef1d8c7b98b5da691f06ca108cbf3d0cbe5dd50f05e222e3277b78f6.png" />
 </div>
 </div>
-</section>
 </section>
 </section>
 
@@ -1335,82 +1237,16 @@ Name: count, dtype: int64
     <a class="reference internal nav-link" href="#histograms-and-probability-density-functions-pdf-using-kde">
      Histograms and Probability Density Functions (PDF) using KDE
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#how-to-compute-pdfs-using-counts-frequencies-of-data-points-in-each-window">
-       How to compute PDFs using counts/frequencies of data points in each window.
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#how-window-width-effects-the-pdf-plot">
-       How window width effects the PDF plot.
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interpreting-a-pdf">
      Interpreting a PDF:
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#why-is-it-called-a-density-plot">
-       why is it called a density plot?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#why-is-it-called-a-probability-plot">
-       Why is it called a probability plot?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#for-each-value-of-petal-length-what-does-the-value-on-y-axis-mean">
-       for each value of petal_length, what does the value on y-axis mean?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#notice-that-we-can-write-a-simple-if-else-condition-as-if-petal-length-2-5-then-flower-type-is-setosa">
-       Notice that we can write a simple if..else condition as if(petal_length) &lt; 2.5 then flower type is setosa.
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#using-just-one-feature-we-can-build-a-simple-model-using-if-else-statements">
-       Using just one feature, we can build a simple “model” using if..else… statements.
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#disadv-of-pdf-can-we-say-what-percentage-of-versicolor-points-have-a-petal-length-of-less-than-5">
      Disadv of PDF: Can we say what percentage of versicolor points have a petal_length of less than 5?
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#do-some-of-these-plots-look-like-a-bell-curve-you-studied-in-under-grad">
-       Do some of these plots look like a bell-curve you studied in under-grad?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#gaussian-normal-distribution">
-       Gaussian/Normal distribution.
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#what-is-normal-about-normal-distribution">
-       What is “normal” about normal distribution?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#e-g-heights-of-male-students-in-a-class">
-       e.g: Heights of male students in a class.
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#one-of-the-most-frequent-distributions-in-nature">
-       One of the most frequent distributions in nature.
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
