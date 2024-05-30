@@ -11,7 +11,7 @@
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -72,13 +72,13 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Hypothesis testing on real-world data" href="9_Hypothesis_testing_real_world_data.html" />
-    <link rel="prev" title="Chi-Square Test-" href="7_Hypothesis_Testing_chisquare.html" />
+    <link rel="prev" title="Chi-Square Test" href="7_Hypothesis_Testing_chisquare.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="None">
   </head>
   
   
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
 
   
   
@@ -195,7 +195,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="7_Hypothesis_Testing_chisquare.html">
-                        Chi-Square Test-
+                        Chi-Square Test
                       </a>
                     </li>
                 
@@ -363,7 +363,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="7_Hypothesis_Testing_chisquare.html">
-                        Chi-Square Test-
+                        Chi-Square Test
                       </a>
                     </li>
                 
@@ -501,7 +501,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="7_Hypothesis_Testing_chisquare.html">Chi-Square Test-</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_Hypothesis_Testing_chisquare.html">Chi-Square Test</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Anova Test(F-Test)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="9_Hypothesis_testing_real_world_data.html">Hypothesis testing on real-world data</a></li>
 
@@ -589,22 +589,6 @@ title="Launch on Colab"
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
-</a>
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
 </a>
       
   </ul>
@@ -1089,7 +1073,7 @@ Alternate hypothesis: petal width from three different groups are different.</p>
     {
         requestKernel: true,
         binderOptions: {
-            repo: "uqstatsSSP/uqstatsssp.github.io",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -1117,7 +1101,7 @@ Alternate hypothesis: petal width from three different groups are different.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Chi-Square Test-</p>
+          <p class="prev-next-title">Chi-Square Test</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="9_Hypothesis_testing_real_world_data.html" title="next page">
