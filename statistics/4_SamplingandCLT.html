@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Confidence Intervals &#8212; Statistics with Python</title>
+    <title>Sampling and Central Limit Theorem &#8212; Statistics with Python</title>
   
   
   
@@ -60,12 +60,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'statistics/5_Confidence+intervals';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'statistics/4_SamplingandCLT';</script>
     <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="T Test" href="6_Hypothesis_Testing_t_test.html" />
-    <link rel="prev" title="Sampling and Central Limit Theorem" href="4_Sampling-and-CLT.html" />
+    <link rel="next" title="Confidence Intervals" href="5_Confidenceintervals.html" />
+    <link rel="prev" title="Excercise on Heberman Cancer dataset" href="3_ExcerciseHaberman.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="None">
   </head>
@@ -140,36 +140,36 @@ const thebe_selector_output = ".output, .cell_output"
     <ul id="navbar-main-elements" class="navbar-nav">
         
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="1_Exploratory%2BData%2BAnalysis.html">
+                      <a class="nav-link nav-internal" href="links.html">
+                        Links for Presentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="1_ExploratoryDataAnalysis.html">
                         Plotting for Exploratory data analysis (EDA)
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="3_Descriptive%2BStatistics.html">
+                      <a class="nav-link nav-internal" href="3_DescriptiveStatistics.html">
                         Descriptive Statistics
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="3_Excercise%2BHaberman.html">
+                      <a class="nav-link nav-internal" href="3_ExcerciseHaberman.html">
                         Excercise on Heberman Cancer dataset
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="4_Sampling-and-CLT.html">
-                        Sampling and Central Limit Theorem
                       </a>
                     </li>
                 
 
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="#">
-                        Confidence Intervals
+                        Sampling and Central Limit Theorem
                       </a>
                     </li>
                 
@@ -179,6 +179,13 @@ const thebe_selector_output = ".output, .cell_output"
                 </button>
                 <div class="dropdown-menu">
                     
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="5_Confidenceintervals.html">
+                        Confidence Intervals
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="6_Hypothesis_Testing_t_test.html">
                         T Test
@@ -304,36 +311,36 @@ const thebe_selector_output = ".output, .cell_output"
     <ul id="navbar-main-elements" class="navbar-nav">
         
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="1_Exploratory%2BData%2BAnalysis.html">
+                      <a class="nav-link nav-internal" href="links.html">
+                        Links for Presentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="1_ExploratoryDataAnalysis.html">
                         Plotting for Exploratory data analysis (EDA)
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="3_Descriptive%2BStatistics.html">
+                      <a class="nav-link nav-internal" href="3_DescriptiveStatistics.html">
                         Descriptive Statistics
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="3_Excercise%2BHaberman.html">
+                      <a class="nav-link nav-internal" href="3_ExcerciseHaberman.html">
                         Excercise on Heberman Cancer dataset
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="4_Sampling-and-CLT.html">
-                        Sampling and Central Limit Theorem
                       </a>
                     </li>
                 
 
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="#">
-                        Confidence Intervals
+                        Sampling and Central Limit Theorem
                       </a>
                     </li>
                 
@@ -343,6 +350,13 @@ const thebe_selector_output = ".output, .cell_output"
                 </button>
                 <div class="dropdown-menu">
                     
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="5_Confidenceintervals.html">
+                        Confidence Intervals
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="6_Hypothesis_Testing_t_test.html">
                         T Test
@@ -471,21 +485,22 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistics with Python</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="1_Exploratory%2BData%2BAnalysis.html">Plotting for Exploratory data analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Links for Presentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_ExploratoryDataAnalysis.html">Plotting for Exploratory data analysis (EDA)</a></li>
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="3_Descriptive%2BStatistics.html">Descriptive Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_DescriptiveStatistics.html">Descriptive Statistics</a></li>
 
 
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="3_Excercise%2BHaberman.html">Excercise on Heberman Cancer dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4_Sampling-and-CLT.html">Sampling and Central Limit Theorem</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Confidence Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_ExcerciseHaberman.html">Excercise on Heberman Cancer dataset</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Sampling and Central Limit Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_Confidenceintervals.html">Confidence Intervals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_Hypothesis_Testing_t_test.html">T Test</a></li>
 
 
@@ -548,7 +563,7 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-rocket"></i>
   </button>
   <ul class="dropdown-menu">
-      <li><a href="https://mybinder.org/v2/gh/uqstatsSSP/uqstatsssp.github.io/master?urlpath=tree/book/statistics/5_Confidence+intervals.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/uqstatsSSP/uqstatsssp.github.io/master?urlpath=tree/book/statistics/4_SamplingandCLT.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -564,7 +579,7 @@ title="Launch on Binder"
 </a>
 </a>
       
-      <li><a href="https://colab.research.google.com/github/uqstatsSSP/uqstatsssp.github.io/blob/master/book/statistics/5_Confidence+intervals.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/uqstatsSSP/uqstatsssp.github.io/blob/master/book/statistics/4_SamplingandCLT.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -619,7 +634,7 @@ title="Source repository"
 </a>
 </a>
       
-      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io/issues/new?title=Issue%20on%20page%20%2Fstatistics/5_Confidence+intervals.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io/issues/new?title=Issue%20on%20page%20%2Fstatistics/4_SamplingandCLT.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -634,7 +649,7 @@ title="Open an issue"
 </a>
 </a>
       
-      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io/edit/master/book/statistics/5_Confidence+intervals.ipynb" target="_blank"
+      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io/edit/master/book/statistics/4_SamplingandCLT.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -659,7 +674,7 @@ title="Edit this page"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
-      <li><a href="../_sources/statistics/5_Confidence+intervals.ipynb" target="_blank"
+      <li><a href="../_sources/statistics/4_SamplingandCLT.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -700,7 +715,7 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Confidence Intervals</h1>
+    <h1>Sampling and Central Limit Theorem</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -711,96 +726,86 @@ title="Print to PDF"
 
             <article class="bd-article" role="main">
               
-  <section id="confidence-intervals">
-<h1>Confidence Intervals<a class="headerlink" href="#confidence-intervals" title="Permalink to this headline">#</a></h1>
-<p>A confidence interval is a range of values, derived from a statistical estimation process, that is likely to contain the true value of an unknown population parameter</p>
-<p>Lets use the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> module in Python to compute the confidence interval:</p>
-<p>We’ll use knowledge from various studies that suggest the average height of an adult male is approximately 175 cm with a standard deviation of about 7 cm. We’ll generate a normally distributed sample of 100,1000, 10000 people’s heights using these parameters.</p>
-<p>In this example, np.random.normal generates a random sample from a normal (Gaussian) distribution. stats.sem computes the standard error of the mean, and stats.t.interval computes the confidence interval.</p>
-<p>Remember that the resulting confidence interval represents the range that we’re 95% confident contains the true mean height of the population from which we’re sampling. The larger the sample size, the narrower our confidence interval will be, all else being equal.</p>
+  <section id="sampling-and-central-limit-theorem">
+<h1>Sampling and Central Limit Theorem<a class="headerlink" href="#sampling-and-central-limit-theorem" title="Permalink to this headline">#</a></h1>
+<p>The Central Limit Theorem (CLT) states that the distribution of sample means approximates a normal distribution as the sample size becomes larger, regardless of the shape of the population distribution.​</p>
+<p>It establishes that for independent and indentically disributed random variables, the sampling distribution of the standarized sample mean tends towards the standard normal distribution, even if the original variables themselves are not normally distributed.</p>
+<p>In other words, suppose that a large sample of observations is obtained, each observation being randomly produced in a way that does not depend on the values of the other observations, and that the average (airthmetic mean) of the observed values is computed. If this procedure is performed many times, resulting in a collection of observed averages, the central limit theorem says that if the sample size was large enough, the probability distribution of these averages will closely approximate a normal distribution.</p>
+<p>Let’s use a Python simulation to demonstrate the Central Limit Theorem (CLT) with randomly generated patient data. For the sake of simplicity, we’ll assume the distribution of patient stays follows a non-normal distribution (let’s say, a gamma distribution, which can model waiting times).</p>
+<p>First, we’ll generate the population data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Set a seed for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="c1"># Generate a random sample of 100 people&#39;s heights</span>
-<span class="n">heights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">175</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1"># Parameters for the gamma distribution </span>
+<span class="n">shape</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.</span>  
 
+<span class="c1"># Generate the &quot;population&quot;</span>
+<span class="n">population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
 
-<span class="c1"># Compute a 95% confidence interval for the mean</span>
-<span class="n">mean_height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
-<span class="n">standard_error</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
-
-<span class="n">confidence_interval</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mean_height</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">standard_error</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for the mean height is </span><span class="si">{</span><span class="n">confidence_interval</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval for the mean height is (172.88222231494893, 178.9120181510856)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x74d069c9e830&gt;]
 </pre></div>
 </div>
 </div>
 </div>
+<p>Now, we’ll repeatedly sample from this population and record the sample means:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Number of samples</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">1000</span>
 
-<span class="c1"># Set a seed for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Size of each sample</span>
+<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">5</span>
 
-<span class="c1"># Generate a random sample of 1000 people&#39;s heights</span>
-<span class="n">heights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">175</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="c1"># Store the sample means here</span>
+<span class="n">sample_means</span> <span class="o">=</span> <span class="p">[]</span>
 
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+    <span class="c1"># Draw a random sample from the population</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+    
+    <span class="c1"># Compute the sample mean</span>
+    <span class="n">sample_means</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">))</span>
 
-<span class="c1"># Compute a 95% confidence interval for the mean</span>
-<span class="n">mean_height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
-<span class="n">standard_error</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
-
-<span class="n">confidence_interval</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mean_height</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">standard_error</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for the mean height is </span><span class="si">{</span><span class="n">confidence_interval</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample_means</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval for the mean height is (173.40193918189914, 175.240359593395)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.238665738079807
 </pre></div>
 </div>
 </div>
 </div>
+<p>Finally, we can visualize the distribution of sample means to see if it approximates a normal distribution:</p>
+<p>According to the Central Limit Theorem, the histogram should show a distribution that looks approximately normal, centered around the true population mean, which we can compute with <code class="docutils literal notranslate"><span class="pre">np.mean(population)</span></code>. This demonstrates that even though the lengths of stay were originally gamma-distributed, the means of samples from this population are normally distributed.</p>
+<p>Keep in mind that in real-life scenarios, you wouldn’t have access to the whole “population” as we do in this simulation. Instead, you’d take a sample from the population, calculate the sample mean and use that to estimate the population mean, as described in the Central Limit Theorem.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="c1"># Set a seed for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># Generate a random sample of 10000 people&#39;s heights</span>
-<span class="n">heights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">175</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
-
-
-<span class="c1"># Compute a 95% confidence interval for the mean</span>
-<span class="n">mean_height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
-<span class="n">standard_error</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
-
-<span class="n">confidence_interval</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mean_height</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">standard_error</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for the mean height is </span><span class="si">{</span><span class="n">confidence_interval</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample_means</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample Mean Length of Stay&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Sample Means of Patient Length of Stay&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Population mean is&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">population</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval for the mean height is (174.43310823303932, 175.01388016221273)
+<img alt="../_images/2f37a4d39faacab039f3753eb48276b2a7c9c1fedbd36dc99789ec043c0ce186.png" src="../_images/2f37a4d39faacab039f3753eb48276b2a7c9c1fedbd36dc99789ec043c0ce186.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Population mean is
+3.9966526590614935
 </pre></div>
 </div>
 </div>
@@ -835,17 +840,17 @@ title="Print to PDF"
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="4_Sampling-and-CLT.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="3_ExcerciseHaberman.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Sampling and Central Limit Theorem</p>
+          <p class="prev-next-title">Excercise on Heberman Cancer dataset</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="6_Hypothesis_Testing_t_test.html" title="next page">
+  <a class='right-next' id="next-link" href="5_Confidenceintervals.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">T Test</p>
+      <p class="prev-next-title">Confidence Intervals</p>
   </div>
   <i class="fa-solid fa-angle-right"></i>
   </a>
