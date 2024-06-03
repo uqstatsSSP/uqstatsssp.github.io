@@ -1,4 +1,4 @@
-# Statistics with Python
+# Homepage
 
 If you need to use Python for your research, you may find the following resources helpful for working with statistics in Python:
 
