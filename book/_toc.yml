@@ -1,7 +1,6 @@
 format: jb-book
 root: Introduction/intro
-parts:
-  chapters:
+chapters:
   - title: Statistics with Python # title instead of file
   sections:
   - file: statistics/1_Exploratory+Data+Analysis.ipynb
@@ -16,7 +15,7 @@ parts:
   - file: statistics/HypothesisTesting.ipynb
   - file: statistics/Example_statistics.md
 
-  chapters:
+chapters:
   - title: Machine Learning with Python 
   sections:
   - file: Machine_Learning/IntroToMLforHDRans.md
