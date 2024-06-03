@@ -3,11 +3,12 @@ root: Introduction/intro
 parts:
 - caption: Statistics with Python
   chapters:
-  - file: statistics/1_Exploratory+Data+Analysis.ipynb
-  - file: statistics/3_Descriptive+Statistics.ipynb
-  - file: statistics/3_Excercise+Haberman.ipynb
-  - file: statistics/4_Sampling-and-CLT.ipynb
-  - file: statistics/5_Confidence+intervals.ipynb
+  - file: statistics/links.md
+  - file: statistics/1_ExploratoryDataAnalysis.ipynb
+  - file: statistics/3_DescriptiveStatistics.ipynb
+  - file: statistics/3_ExcerciseHaberman.ipynb
+  - file: statistics/4_SamplingandCLT.ipynb
+  - file: statistics/5_Confidenceintervals.ipynb
   - file: statistics/6_Hypothesis_Testing_t_test.ipynb
   - file: statistics/7_Hypothesis_Testing_chisquare.ipynb
   - file: statistics/8_Hypothesis_Testing_ANOVA.ipynb
