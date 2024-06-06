@@ -20,3 +20,7 @@ parts:
   chapters:
   - file: Machine_Learning/IntroToMLforHDRans.md
   - file: Machine_Learning/machine_learning_faqs.md
+
+- caption: Demo Topic
+  chapters:
+  - file: demo_topic/demo.ipynb
