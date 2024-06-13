@@ -3,7 +3,6 @@ root: Introduction/intro
 parts:
 - caption: Statistics with Python
   chapters:
-  - file: statistics/links.md
   - file: statistics/1_ExploratoryDataAnalysis.ipynb
   - file: statistics/3_DescriptiveStatistics.ipynb
   - file: statistics/3_ExcerciseHaberman.ipynb
@@ -15,7 +14,8 @@ parts:
   - file: statistics/9_Hypothesis_testing_real_world_data.ipynb
   - file: statistics/HypothesisTesting.ipynb
   - file: statistics/Example_statistics.md
-
+  - file: statistics/links.md
+  
 - caption: Machine Learning with Python
   chapters:
   - file: Machine_Learning/IntroToMLforHDRans.md
