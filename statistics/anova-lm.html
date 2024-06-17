@@ -1,0 +1,1891 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>RStats Introduction: ANOVA and linear regression &#8212; Statistics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'statistics/anova-lm';</script>
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="None">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../Introduction/intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="1_ExploratoryDataAnalysis.html">
+                        Plotting for Exploratory data analysis (EDA)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="3_DescriptiveStatistics.html">
+                        Descriptive Statistics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="3_ExcerciseHaberman.html">
+                        Excercise on Heberman Cancer dataset
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="4_SamplingandCLT.html">
+                        Sampling and Central Limit Theorem
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="5_Confidenceintervals.html">
+                        Confidence Intervals
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="6_Hypothesis_Testing_t_test.html">
+                        T Test
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="7_Hypothesis_Testing_chisquare.html">
+                        Chi-Square Test
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="8_Hypothesis_Testing_ANOVA.html">
+                        Anova Test(F-Test)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="9_Hypothesis_testing_real_world_data.html">
+                        Hypothesis testing on real-world data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="HypothesisTesting.html">
+                        Hypothesis testing - Tiktok dataset
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Example_statistics.html">
+                        Examples Statistics with Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="links.html">
+                        Statistics for Python Presentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Machine_Learning/IntroToMLforHDRans.html">
+                        Intro to Machine Learning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Machine_Learning/machine_learning_faqs.html">
+                        Machine learning FAQs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../demo_topic/demo.html">
+                        This is a demo project
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="1_ExploratoryDataAnalysis.html">
+                        Plotting for Exploratory data analysis (EDA)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="3_DescriptiveStatistics.html">
+                        Descriptive Statistics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="3_ExcerciseHaberman.html">
+                        Excercise on Heberman Cancer dataset
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="4_SamplingandCLT.html">
+                        Sampling and Central Limit Theorem
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="5_Confidenceintervals.html">
+                        Confidence Intervals
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="6_Hypothesis_Testing_t_test.html">
+                        T Test
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="7_Hypothesis_Testing_chisquare.html">
+                        Chi-Square Test
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="8_Hypothesis_Testing_ANOVA.html">
+                        Anova Test(F-Test)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="9_Hypothesis_testing_real_world_data.html">
+                        Hypothesis testing on real-world data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="HypothesisTesting.html">
+                        Hypothesis testing - Tiktok dataset
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="Example_statistics.html">
+                        Examples Statistics with Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="links.html">
+                        Statistics for Python Presentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Machine_Learning/IntroToMLforHDRans.html">
+                        Intro to Machine Learning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../Machine_Learning/machine_learning_faqs.html">
+                        Machine learning FAQs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../demo_topic/demo.html">
+                        This is a demo project
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../Introduction/intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../Introduction/intro.html">
+                    Homepage
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistics with Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_ExploratoryDataAnalysis.html">Plotting for Exploratory data analysis (EDA)</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="3_DescriptiveStatistics.html">Descriptive Statistics</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="3_ExcerciseHaberman.html">Excercise on Heberman Cancer dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_SamplingandCLT.html">Sampling and Central Limit Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_Confidenceintervals.html">Confidence Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_Hypothesis_Testing_t_test.html">T Test</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="7_Hypothesis_Testing_chisquare.html">Chi-Square Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_Hypothesis_Testing_ANOVA.html">Anova Test(F-Test)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_Hypothesis_testing_real_world_data.html">Hypothesis testing on real-world data</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="HypothesisTesting.html">Hypothesis testing - Tiktok dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example_statistics.html">Examples Statistics with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Statistics for Python Presentation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning with Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Machine_Learning/IntroToMLforHDRans.html">Intro to Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Machine_Learning/machine_learning_faqs.html">Machine learning FAQs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Demo Topic</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../demo_topic/demo.html">This is a demo project</a></li>
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io/issues/new?title=Issue%20on%20page%20%2Fstatistics/anova-lm.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io/edit/master/book/statistics/anova-lm.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">suggest edit</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/statistics/anova-lm.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>RStats Introduction: ANOVA and linear regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-we-going-to-learn">
+   What are we going to learn?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#keep-in-mind">
+   Keep in mind
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#help">
+     Help
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#open-rstudio">
+   Open RStudio
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up">
+   Setting up
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-and-load-required-packages-for-first-sections">
+     Install and load required packages for first sections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-project">
+     New project
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-script">
+     Create a script
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introducing-our-data">
+     Introducing our data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#statistics-in-r-using-base-and-stats">
+   Statistics in R using base and stats
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-the-data">
+     Visualize the data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analysis-of-variance-anova">
+     Analysis of Variance (ANOVA)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pair-wise-comparison">
+       Pair-wise comparison
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#checking-the-model">
+       Checking the model
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-model">
+     Linear Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-inbetween">
+   The inbetween…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducing-tidymodels">
+   Introducing Tidymodels
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-more-packages">
+     Load more packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-and-fit-a-model">
+     Build and fit a model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-a-model-to-predict">
+   Use a model to predict
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#close-project">
+   Close project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#useful-links">
+   Useful links
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="rstats-introduction-anova-and-linear-regression">
+<h1>RStats Introduction: ANOVA and linear regression<a class="headerlink" href="#rstats-introduction-anova-and-linear-regression" title="Permalink to this headline">#</a></h1>
+<p>UQ Library
+(2022-02-01)</p>
+<ul class="simple">
+<li><p><span class="xref myst">What are we going to learn?</span></p></li>
+<li><p><span class="xref myst">Keep in mind</span></p>
+<ul>
+<li><p><span class="xref myst">Help</span></p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Open RStudio</span></p></li>
+<li><p><span class="xref myst">Setting up</span></p>
+<ul>
+<li><p><span class="xref myst">Install and load required packages for first
+sections</span></p></li>
+<li><p><span class="xref myst">New project</span></p></li>
+<li><p><span class="xref myst">Create a script</span></p></li>
+<li><p><span class="xref myst">Introducing our data</span></p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Statistics in R using base and
+stats</span></p>
+<ul>
+<li><p><span class="xref myst">Visualize the data</span></p></li>
+<li><p><span class="xref myst">Analysis of Variance (ANOVA)</span></p></li>
+<li><p><span class="xref myst">Linear Model</span></p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">The inbetween…</span></p></li>
+<li><p><span class="xref myst">Introducing Tidymodels</span></p>
+<ul>
+<li><p><span class="xref myst">Load more packages</span></p></li>
+<li><p><span class="xref myst">Build and fit a model</span></p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Use a model to predict</span></p></li>
+<li><p><span class="xref myst">Close project</span></p></li>
+<li><p><span class="xref myst">Useful links</span></p></li>
+</ul>
+<section id="what-are-we-going-to-learn">
+<h2>What are we going to learn?<a class="headerlink" href="#what-are-we-going-to-learn" title="Permalink to this headline">#</a></h2>
+<p>In this hands-on session, you will use R, RStudio to run analysis of
+variance (ANOVA) and linear regression models.</p>
+<p>Specifically, you will learn:</p>
+<ul class="simple">
+<li><p>visualize data in base R and using the ggplot2 package</p></li>
+<li><p>analysis of variance (ANOVA) in base R</p></li>
+<li><p>linear models in base R</p></li>
+<li><p>the tidy model approach</p></li>
+</ul>
+</section>
+<section id="keep-in-mind">
+<h2>Keep in mind<a class="headerlink" href="#keep-in-mind" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Everything we write today will be saved in your project. Please
+remember to save it in your H drive or USB if you are using a
+Library computer.</p></li>
+<li><p>R is case sensitive: it will tell the difference between uppercase
+and lowercase.</p></li>
+<li><p>Respect the naming rules for objects (no spaces, does not start with
+a number…)</p></li>
+</ul>
+<section id="help">
+<h3>Help<a class="headerlink" href="#help" title="Permalink to this headline">#</a></h3>
+<p>For any dataset or function doubts that you might have, don’t forget the
+three ways of getting help in RStudio:</p>
+<ol class="arabic simple">
+<li><p>the shortcut command: <code class="docutils literal notranslate"><span class="pre">?functionname</span></code></p></li>
+<li><p>the help function: <code class="docutils literal notranslate"><span class="pre">help(functionname)</span></code></p></li>
+<li><p>the keyboard shortcut: press F1 after writing a function name</p></li>
+</ol>
+</section>
+</section>
+<section id="open-rstudio">
+<h2>Open RStudio<a class="headerlink" href="#open-rstudio" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>If you are using your own laptop please open RStudio</p>
+<ul>
+<li><p>If you need them, we have <span class="xref myst">installation
+instructions</span></p></li>
+</ul>
+</li>
+<li><p>Make sure you have a working internet connection</p></li>
+<li><p>On Library computers (the first time takes about 10 min.):</p>
+<ul>
+<li><p>Log in with your UQ credentials (student account if you have
+two)</p></li>
+<li><p>Make sure you have a working internet connection</p></li>
+<li><p>Go to search at bottom left corner (magnifiying glass)</p></li>
+<li><p>Open the ZENworks application</p></li>
+<li><p>Look for RStudio</p></li>
+<li><p>Double click on RStudio which will install both R and RStudio</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="setting-up">
+<h2>Setting up<a class="headerlink" href="#setting-up" title="Permalink to this headline">#</a></h2>
+<section id="install-and-load-required-packages-for-first-sections">
+<h3>Install and load required packages for first sections<a class="headerlink" href="#install-and-load-required-packages-for-first-sections" title="Permalink to this headline">#</a></h3>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># install.packages(&quot;readr&quot;)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span><span class="w">       </span><span class="c1"># for importing data</span>
+<span class="c1"># install.packages(&quot;dplyr&quot;)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w"> </span><span class="c1"># data manipulation package</span>
+<span class="c1"># install.packages(&quot;ggplot2&quot;)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w"> </span><span class="c1"># data visualization</span>
+
+<span class="c1"># install.packages(&quot;car&quot;)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">car</span><span class="p">)</span><span class="w">         </span><span class="c1"># Companion to Applied Regression package</span>
+<span class="c1"># install.packages(&quot;performance&quot;)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">performance</span><span class="p">)</span><span class="w"> </span><span class="c1"># Assessment of Regressmon Models performance</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Remember to use <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to execute a command
+from the script.</p>
+</div></blockquote>
+</section>
+<section id="new-project">
+<h3>New project<a class="headerlink" href="#new-project" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Click the “File” menu button (top left corner), then “New Project”</p></li>
+<li><p>Click “New Directory”</p></li>
+<li><p>Click “New Project” (“Empty project” if you have an older version of
+RStudio)</p></li>
+<li><p>In “Directory name”, type the name of your project,
+e.g. “dplyr_intro”</p></li>
+<li><p>Select the folder where to locate your project: for example, the
+<code class="docutils literal notranslate"><span class="pre">Documents/RProjects</span></code> folder, which you can create if it doesn’t
+exist yet.</p></li>
+<li><p>Click the “Create Project” button</p></li>
+</ul>
+</section>
+<section id="create-a-script">
+<h3>Create a script<a class="headerlink" href="#create-a-script" title="Permalink to this headline">#</a></h3>
+<p>We will use a script to write code more comfortably.</p>
+<ul class="simple">
+<li><p>Menu: Top left corner, click the green “plus” symbol, or press the
+shortcut (for Windows/Linux) <kbd>Ctrl</kbd>+Shift</kbd>+N</kbd> or
+(for Mac) <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>. This will
+open an “Untitled1” file.</p></li>
+<li><p>Go to “File &gt; Save” or press (for Windows/Linux)
+<kbd>Ctrl</kbd>+<kbd>S</kbd> or (for Mac)
+<kbd>Cmd</kbd>+<kbd>S</kbd>. This will ask where you want to save
+your file and the name of the new file.</p></li>
+<li><p>Call your file “process.R”</p></li>
+</ul>
+</section>
+<section id="introducing-our-data">
+<h3>Introducing our data<a class="headerlink" href="#introducing-our-data" title="Permalink to this headline">#</a></h3>
+<p>The following section will be using data from <a class="reference external" href="https://link.springer.com/article/10.1007/BF00349318">Constable
+(1993)</a> to explore
+how three different feeding regimes affect the size of sea urchins over
+time.</p>
+<p>Sea urchins reportedly regulate their size according to the level of
+food available to regulate maintenance requirements. The paper examines
+whether a reduction in suture width (i.e., connection points between
+plates; see Fig 1 from constable 1993) is the basis for shrinking due to
+low food conditions.</p>
+<p><img alt="Figure 1 from Constable 1993 paper showing sea urchin plates andsuture width" src="statistics/images/Constable-1993-fig1.PNG" /></p>
+<p>The <a class="reference external" href="https://tidymodels.org/start/models/urchins.csv">data in csv
+format</a> is available
+from the tidymodels website and were assembled for a tutorial
+<a class="reference external" href="https://www.flutterbys.com.au/stats/tut/tut7.5a.html">here</a>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">urchins</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span>
+<span class="w">   </span><span class="c1"># read in the data</span>
+<span class="w">   </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&quot;https://tidymodels.org/start/models/urchins.csv&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">   </span><span class="c1"># change the names to be more description</span>
+<span class="w">   </span><span class="nf">setNames</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;food_regime&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;initial_volume&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;width&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">   </span><span class="c1"># convert food_regime from chr to a factor, helpful for modeling</span>
+<span class="w">   </span><span class="nf">mutate</span><span class="p">(</span><span class="n">food_regime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">food_regime</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                               </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Initial&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Low&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;High&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">urchins</span><span class="w"> </span><span class="c1"># see the data as a tibble</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## # A tibble: 72 x 3
+##    food_regime initial_volume width
+##    &lt;fct&gt;                &lt;dbl&gt; &lt;dbl&gt;
+##  1 Initial                3.5 0.01 
+##  2 Initial                5   0.02 
+##  3 Initial                8   0.061
+##  4 Initial               10   0.051
+##  5 Initial               13   0.041
+##  6 Initial               13   0.061
+##  7 Initial               15   0.041
+##  8 Initial               15   0.071
+##  9 Initial               16   0.092
+## 10 Initial               17   0.051
+## # ... with 62 more rows
+</pre></div>
+</div>
+<p>We have 72 urchins with data on:</p>
+<ul class="simple">
+<li><p>experimental feeding regime group with 3 levels (Initial, Low, or
+High)</p></li>
+<li><p>size in milliliters at the start of the experiment (initial_volume)</p></li>
+<li><p>suture width in millimeters at the end of the experiment (width, see
+<span class="xref myst">Fig 1</span>)</p></li>
+</ul>
+</section>
+</section>
+<section id="statistics-in-r-using-base-and-stats">
+<h2>Statistics in R using base and stats<a class="headerlink" href="#statistics-in-r-using-base-and-stats" title="Permalink to this headline">#</a></h2>
+<section id="visualize-the-data">
+<h3>Visualize the data<a class="headerlink" href="#visualize-the-data" title="Permalink to this headline">#</a></h3>
+<p>Use a boxplot to visualize width versus <code class="docutils literal notranslate"><span class="pre">food_regime</span></code> as a factor and a
+scatterplot for width versus <code class="docutils literal notranslate"><span class="pre">initial_volume</span></code> as a continuous variable.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">boxplot</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">food_regime</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urchins</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="" src="statistics/anova-lm_files/figure-gfm/unnamed-chunk-2-1.png" /><!-- --></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">initial_volume</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urchins</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="" src="statistics/anova-lm_files/figure-gfm/unnamed-chunk-2-2.png" /><!-- --></p>
+<p>We can see that there are some relationships between the response
+variable (width) and our two covariates (food_regime and initial
+volume). But what about the interaction between the two covariates?</p>
+<p><strong>Challenge 1 - Use ggplot2 to make a plot visualizing the interaction
+between our two variables. Add a trendline to the data.</strong></p>
+<blockquote>
+<div><p>Hint: think about grouping and coloring.</p>
+</div></blockquote>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">urchins</span><span class="p">,</span>
+<span class="w">       </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initial_volume</span><span class="p">,</span>
+<span class="w">           </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">width</span><span class="p">,</span>
+<span class="w">           </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">food_regime</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">   </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">   </span><span class="nf">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lm&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">se</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># add a linear trendline with out a confidence interval e.g., se = FALSE</span>
+<span class="w">   </span><span class="nf">scale_color_viridis_d</span><span class="p">(</span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;plasma&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w">   </span><span class="c1"># change to color blind friendly palette, end is a corrected hue value</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## `geom_smooth()` using formula &#39;y ~ x&#39;
+</pre></div>
+</div>
+<p><img alt="" src="statistics/anova-lm_files/figure-gfm/ggplot%20urchins-1.png" /><!-- --></p>
+<p>Urchins that were larger in volume at the start of the experiment tended
+to have wider sutures at the end. Slopes of the lines look different so
+this effect may depend on the feeding regime indicating we should
+include an interaction term.</p>
+</section>
+<section id="analysis-of-variance-anova">
+<h3>Analysis of Variance (ANOVA)<a class="headerlink" href="#analysis-of-variance-anova" title="Permalink to this headline">#</a></h3>
+<p>Information in this section was taken from
+<a class="reference external" href="https://rpubs.com/tmcurley/twowayanova">rpubs.com</a> and <a class="reference external" href="https://bookdown.org/steve_midway/DAR/understanding-anova-in-r.html#multiple-comparisons">Data Analysis
+in R Ch
+7</a>.</p>
+<p>We can do an ANOVA with the <code class="docutils literal notranslate"><span class="pre">aov()</span></code> function to test for differences in
+sea urchin suture width between our groups. We are technically running
+and <strong>analysis of covariance (ANCOVA)</strong> as we have both a continuous and
+a categorical variable. ANOVAs are for categorical variables and we will
+see that some of the <em>post-hoc</em> tests are not amenable to continuous
+variables.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">aov()</span></code> uses the model formula
+<code class="docutils literal notranslate"><span class="pre">response</span> <span class="pre">variable</span> <span class="pre">~</span> <span class="pre">covariate1</span> <span class="pre">+</span> <span class="pre">covariate2</span></code>. The * denotes the
+inclusion of both main effects and interactions which we have done
+below. The formula below is equivalent to
+<code class="docutils literal notranslate"><span class="pre">reponse</span> <span class="pre">~</span> <span class="pre">covar1</span> <span class="pre">+</span> <span class="pre">covar2</span> <span class="pre">+</span> <span class="pre">covar1:covar2</span></code> i.e., the main effect of
+covar 1 and covar 2, and the interaction between the two.</p>
+</div></blockquote>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">aov_urch</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">aov</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">food_regime</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">initial_volume</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urchins</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">aov_urch</span><span class="p">)</span><span class="w">  </span><span class="c1"># print the summary statistics</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>##                            Df   Sum Sq  Mean Sq F value   Pr(&gt;F)    
+## food_regime                 2 0.012380 0.006190  13.832 9.62e-06 ***
+## initial_volume              1 0.008396 0.008396  18.762 5.15e-05 ***
+## food_regime:initial_volume  2 0.004609 0.002304   5.149  0.00835 ** 
+## Residuals                  66 0.029536 0.000448                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+</pre></div>
+</div>
+<p>Both the main effects and interaction are significant (p &lt; 0.05)
+indicating a significant interactive effect between food regime and
+initial volume on urchin suture width. We need to do a
+pairwise-comparison to find out which factor levels and combination of
+the two covariates have the largest effect on width.</p>
+<section id="pair-wise-comparison">
+<h4>Pair-wise comparison<a class="headerlink" href="#pair-wise-comparison" title="Permalink to this headline">#</a></h4>
+<p>Run a <strong>Tukey’s Honestly Significant Difference (HSD)</strong> test - note it
+does not work for non-factors as per the warning message.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">TukeyHSD</span><span class="p">(</span><span class="n">aov_urch</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = width ~ food_regime * initial_volume, data = urchins)
+## 
+## $food_regime
+##                      diff          lwr         upr     p adj
+## Low-Initial  -0.006791667 -0.021433881 0.007850548 0.5100502
+## High-Initial  0.023791667  0.009149452 0.038433881 0.0006687
+## High-Low      0.030583333  0.015941119 0.045225548 0.0000129
+</pre></div>
+</div>
+<p>The comparison between High-Initial and High-Low food regimes are
+significant (p &lt; 0.05).</p>
+</section>
+<section id="checking-the-model">
+<h4>Checking the model<a class="headerlink" href="#checking-the-model" title="Permalink to this headline">#</a></h4>
+<p>We also want to check that our model is a good fit and does not violate
+any ANOVA <strong>assumptions</strong>:</p>
+<ol class="arabic simple">
+<li><p>Data are independent and normally distributed.</p></li>
+<li><p>The residuals from the data are normally distributed.</p></li>
+<li><p>The variances of the sampled populations are equal.</p></li>
+</ol>
+<p><strong>Challenge 2 - Use a histogram and qqplots to visually check data are
+normal</strong>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">hist</span><span class="p">(</span><span class="n">urchins</span><span class="o">$</span><span class="n">width</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="" src="statistics/anova-lm_files/figure-gfm/unnamed-chunk-5-1.png" /><!-- --></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">qqnorm</span><span class="p">(</span><span class="n">urchins</span><span class="o">$</span><span class="n">width</span><span class="p">)</span>
+<span class="nf">qqline</span><span class="p">(</span><span class="n">urchins</span><span class="o">$</span><span class="n">width</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="" src="statistics/anova-lm_files/figure-gfm/unnamed-chunk-5-2.png" /><!-- --></p>
+<p>You could also run a Shapiro-Wilk test on the data:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">shapiro.test</span><span class="p">(</span><span class="n">urchins</span><span class="o">$</span><span class="n">width</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  urchins$width
+## W = 0.95726, p-value = 0.01552
+</pre></div>
+</div>
+<p>The p-value is less than 0.05 so the data are significantly different
+from a normal distribution.</p>
+<p>Check the <strong>model residuals</strong>. Plot the residuals vs fitted values - do
+not want too much deviation from 0.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">aov_urch</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="" src="statistics/anova-lm_files/figure-gfm/unnamed-chunk-7-1.png" /><!-- --></p>
+<p>Can also plot the predicted values from the model with the acutal
+values.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="nf">predict</span><span class="p">(</span><span class="n">aov_urch</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">urchins</span><span class="o">$</span><span class="n">width</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># plot a red line with intercept of 0 and slope of 1</span>
+</pre></div>
+</div>
+<p><img alt="" src="statistics/anova-lm_files/figure-gfm/unnamed-chunk-8-1.png" /><!-- --></p>
+<p>Check the <strong>normality of residuals</strong>, run Shapiro-Wilk test on
+residuals:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">aov_urch</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="" src="statistics/anova-lm_files/figure-gfm/unnamed-chunk-9-1.png" /><!-- --></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">shapiro.test</span><span class="p">(</span><span class="nf">resid</span><span class="p">(</span><span class="n">aov_urch</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  resid(aov_urch)
+## W = 0.98456, p-value = 0.5244
+</pre></div>
+</div>
+<p>The residuals fall on the Normal Q-Q plot diagonal and the Shapiro-Wilk
+result is non-significant (p &gt; 0.05).</p>
+<p>Check for <strong>homogeneity of variance</strong></p>
+<p><strong>Challenge 3 - use the help documentation for <code class="docutils literal notranslate"><span class="pre">leveneTest()</span></code> from the
+<code class="docutils literal notranslate"><span class="pre">car</span></code> package to check homogenetity of variance on <code class="docutils literal notranslate"><span class="pre">food_regime</span></code>.</strong></p>
+<blockquote>
+<div><p>Again, only works for factor groups.</p>
+</div></blockquote>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">leveneTest</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">food_regime</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urchins</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## # A tibble: 2 x 3
+##      Df `F value` `Pr(&gt;F)`
+##   &lt;int&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1     2      4.42   0.0156
+## 2    69     NA     NA
+</pre></div>
+</div>
+<p>The Levene’s Test is significant for <code class="docutils literal notranslate"><span class="pre">food_regime</span></code> (not what we want)
+and there are a few options to deal with this. You can ignore this
+violation based on your own <em>a priori</em> knowledge of the distribution of
+the population being samples, drop the p-value significance, or use a
+different test.</p>
+</section>
+</section>
+<section id="linear-model">
+<h3>Linear Model<a class="headerlink" href="#linear-model" title="Permalink to this headline">#</a></h3>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lm_urch</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">food_regime</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">initial_volume</span><span class="p">,</span><span class="w"> </span>
+<span class="w">              </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urchins</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">lm_urch</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## 
+## Call:
+## lm(formula = width ~ food_regime * initial_volume, data = urchins)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.045133 -0.013639  0.001111  0.013226  0.067907 
+## 
+## Coefficients:
+##                                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                     0.0331216  0.0096186   3.443 0.001002 ** 
+## food_regimeLow                  0.0197824  0.0129883   1.523 0.132514    
+## food_regimeHigh                 0.0214111  0.0145318   1.473 0.145397    
+## initial_volume                  0.0015546  0.0003978   3.908 0.000222 ***
+## food_regimeLow:initial_volume  -0.0012594  0.0005102  -2.469 0.016164 *  
+## food_regimeHigh:initial_volume  0.0005254  0.0007020   0.748 0.456836    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.02115 on 66 degrees of freedom
+## Multiple R-squared:  0.4622, Adjusted R-squared:  0.4215 
+## F-statistic: 11.35 on 5 and 66 DF,  p-value: 6.424e-08
+</pre></div>
+</div>
+<p>In the output, we have the model call, residuals, and the coefficients.
+The first coefficient is the <code class="docutils literal notranslate"><span class="pre">(Intercept)</span></code> and you might notice the
+<code class="docutils literal notranslate"><span class="pre">food_regimeInitial</span></code> is missing. The function defaults to an effects
+parameterization where the intercept is the reference or baseline of the
+categorical group - Initial in this case.</p>
+<blockquote>
+<div><p>You can change the reference level of a factor using the <code class="docutils literal notranslate"><span class="pre">relevel()</span></code>
+function.</p>
+</div></blockquote>
+<p>The estimates of the remaining group levels of <code class="docutils literal notranslate"><span class="pre">food_regime</span></code> represents
+the effect of being in that group. To calculate the group coefficients
+for all group levels you <em>add</em> the estimates for the level to the
+intercept (first group level) estimate. For example, the estimate for
+the ‘Initial’ feeding regime is 0.0331 and we add the estimate of ‘Low’
+(0.0331 + 0.0197) to get the mean maximum size of 0.0528 mm for width.</p>
+<p>For the continuous covariate, the estimate represents the change in the
+response variable for a unit increase in the covariate. ‘Initial
+Volume’s’ estimate of 0.0015 represents a 0.0015 mm increase (the
+estimate is positive) in width per ml increase in urchin initial volume.</p>
+<p>We can get ANOVA test statistics on our linear model using the <code class="docutils literal notranslate"><span class="pre">anova()</span></code>
+in base or <code class="docutils literal notranslate"><span class="pre">Anova()</span></code> from the <code class="docutils literal notranslate"><span class="pre">car</span></code> package.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">lm_urch</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## # A tibble: 4 x 5
+##      Df `Sum Sq` `Mean Sq` `F value`    `Pr(&gt;F)`
+##   &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+## 1     2  0.0124   0.00619      13.8   0.00000962
+## 2     1  0.00840  0.00840      18.8   0.0000515 
+## 3     2  0.00461  0.00230       5.15  0.00835   
+## 4    66  0.0295   0.000448     NA    NA
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">Anova</span><span class="p">(</span><span class="n">lm_urch</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## # A tibble: 4 x 4
+##   `Sum Sq`    Df `F value`     `Pr(&gt;F)`
+##      &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+## 1  0.0169      2     18.8   0.000000336
+## 2  0.00840     1     18.8   0.0000515  
+## 3  0.00461     2      5.15  0.00835    
+## 4  0.0295     66     NA    NA
+</pre></div>
+</div>
+<p>These are effectively the same as the <code class="docutils literal notranslate"><span class="pre">aov()</span></code> model we ran before.</p>
+<blockquote>
+<div><p><strong>Note</strong>: The statistics outputs are the same comparing the <code class="docutils literal notranslate"><span class="pre">aov()</span></code>
+and <code class="docutils literal notranslate"><span class="pre">anova()</span></code> models while the <code class="docutils literal notranslate"><span class="pre">Anova()</span></code> model is <strong>not</strong> exactly the
+same. The <code class="docutils literal notranslate"><span class="pre">Anova()</span></code> output tells us it was a Type II test and the
+<code class="docutils literal notranslate"><span class="pre">aov()</span></code> documentation says it is only for <em>balanced</em> designs which
+means the Type 1 test is the applied (see
+<a class="reference external" href="https://bookdown.org/ndphillips/YaRrr/type-i-type-ii-and-type-iii-anovas.html">here</a>).
+The type of test can be set for <code class="docutils literal notranslate"><span class="pre">Anova()</span></code> but not the others. Here,
+the overall take-away from the different ANOVA functions are
+comparable.</p>
+</div></blockquote>
+<p><strong>Challenge 4 - use the check_model() documentation to apply the
+function to our <code class="docutils literal notranslate"><span class="pre">lm_urch</span></code> model.</strong></p>
+<p>The performance package has a handy function <code class="docutils literal notranslate"><span class="pre">check_model()</span></code> that will
+check several aspects of your model in one go:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">check_model</span><span class="p">(</span><span class="n">lm_urch</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="" src="statistics/anova-lm_files/figure-gfm/unnamed-chunk-14-1.png" /><!-- --></p>
+<p><strong>Challenge 5 - conduct your own ANOVA or linear regression using the
+mgp dataset from {ggplot2}.</strong></p>
+<ol class="arabic simple">
+<li><p>Test whether # of cylinders and/or engine displacement affect fuel
+efficiency.</p></li>
+<li><p>Make a plot to visualize the relationship.</p></li>
+</ol>
+<blockquote>
+<div><p><strong>Hint</strong>: Check out the documentation for the dataset <code class="docutils literal notranslate"><span class="pre">?mpg</span></code> to see
+the varaibles in the dataset. Are the variables the right data type?
+Suggest saving the dataset locally in your environment i.e.,
+<code class="docutils literal notranslate"><span class="pre">mpg2</span> <span class="pre">&lt;-</span> <span class="pre">mpg</span></code> so you can change data types if necessary.</p>
+</div></blockquote>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mpg2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">  </span><span class="n">mpg</span>
+<span class="n">mpg2</span><span class="o">$</span><span class="n">cyl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">mpg</span><span class="o">$</span><span class="n">cyl</span><span class="p">)</span><span class="w"> </span><span class="c1"># convert cyl from numeric to factor</span>
+
+<span class="c1"># base R ANOVA</span>
+<span class="n">aov_cars</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">aov</span><span class="p">(</span><span class="n">hwy</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">cyl</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">displ</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mpg2</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">aov_cars</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>##              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## cyl           3   4836  1612.1  142.69  &lt; 2e-16 ***
+## displ         1    219   218.8   19.37 1.66e-05 ***
+## cyl:displ     2    642   321.1   28.42 9.65e-12 ***
+## Residuals   227   2565    11.3                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">TukeyHSD</span><span class="p">(</span><span class="n">aov_cars</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cyl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = hwy ~ cyl * displ, data = mpg2)
+## 
+## $cyl
+##             diff        lwr       upr     p adj
+## 5-4  -0.05246914  -4.508182  4.403244 0.9999898
+## 6-4  -5.97968433  -7.355259 -4.604110 0.0000000
+## 8-4 -11.17389771 -12.593534 -9.754261 0.0000000
+## 6-5  -5.92721519 -10.385582 -1.468848 0.0038274
+## 8-5 -11.12142857 -15.593586 -6.649271 0.0000000
+## 8-6  -5.19421338  -6.622156 -3.766270 0.0000000
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># linear model</span>
+<span class="n">lm_cars</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">hwy</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">cyl</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">displ</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mpg2</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">lm_cars</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## 
+## Call:
+## lm(formula = hwy ~ cyl * displ, data = mpg2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.6698 -2.0533 -0.4563  1.6948 13.1597 
+## 
+## Coefficients: (1 not defined because of singularities)
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   46.601      2.586  18.018  &lt; 2e-16 ***
+## cyl5           2.887      1.773   1.628  0.10484    
+## cyl6         -10.221      3.795  -2.693  0.00760 ** 
+## cyl8         -35.626      4.390  -8.114 3.07e-14 ***
+## displ         -8.295      1.193  -6.954 3.74e-11 ***
+## cyl5:displ        NA         NA      NA       NA    
+## cyl6:displ     4.318      1.440   2.998  0.00302 ** 
+## cyl8:displ     9.591      1.376   6.969 3.43e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.361 on 227 degrees of freedom
+## Multiple R-squared:  0.6896, Adjusted R-squared:  0.6814 
+## F-statistic: 84.05 on 6 and 227 DF,  p-value: &lt; 2.2e-16
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">Anova</span><span class="p">(</span><span class="n">lm_cars</span><span class="p">)</span><span class="w"> </span><span class="c1"># from the car package</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## Note: model has aliased coefficients
+##       sums of squares computed by model comparison
+
+## # A tibble: 4 x 4
+##   `Sum Sq`    Df `F value`  `Pr(&gt;F)`
+##      &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1     207.     3      6.11  5.14e- 4
+## 2     219.     1     19.4   1.66e- 5
+## 3     642.     2     28.4   9.65e-12
+## 4    2565.   227     NA    NA
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mpg2</span><span class="p">,</span>
+<span class="w">       </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">displ</span><span class="p">,</span>
+<span class="w">           </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hwy</span><span class="p">,</span>
+<span class="w">           </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cyl</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lm&quot;</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## `geom_smooth()` using formula &#39;y ~ x&#39;
+</pre></div>
+</div>
+<p><img alt="" src="statistics/anova-lm_files/figure-gfm/unnamed-chunk-16-1.png" /><!-- --></p>
+</section>
+</section>
+<section id="the-inbetween">
+<h2>The inbetween…<a class="headerlink" href="#the-inbetween" title="Permalink to this headline">#</a></h2>
+<p>Before going into Tidymodels, it should be mentioned there are <em>many</em>
+excellent linear regression packages. To name a few:</p>
+<ul class="simple">
+<li><p>nlme</p></li>
+<li><p>lmer</p></li>
+<li><p>lmerTest</p></li>
+<li><p>glmmTMB</p></li>
+<li><p>and more…</p></li>
+</ul>
+<p>The packages vary in the methods, how to specify random factors, etc.
+The model outputs also tend to be not so friendly to export into a table
+and document.</p>
+</section>
+<section id="introducing-tidymodels">
+<h2>Introducing Tidymodels<a class="headerlink" href="#introducing-tidymodels" title="Permalink to this headline">#</a></h2>
+<p>Like the tidyverse package, the Tidymodels framework is a collection of
+packages for modeling and machine learning following the tidyverse
+principles.</p>
+<p>This section is modified from the first <a class="reference external" href="https://www.tidymodels.org/start/models/">Tidymodels
+article</a>.</p>
+<section id="load-more-packages">
+<h3>Load more packages<a class="headerlink" href="#load-more-packages" title="Permalink to this headline">#</a></h3>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># install.packages(&quot;tidymodels&quot;)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidymodels</span><span class="p">)</span><span class="w"> </span><span class="c1"># for parsnip package and rest of tidymodels</span>
+
+<span class="nf">library</span><span class="p">(</span><span class="n">dotwhisker</span><span class="p">)</span><span class="c1"># for visualizing regression results</span>
+<span class="c1"># install.packages(&quot;parsnip&quot;)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">parsnip</span><span class="p">)</span>
+<span class="c1"># install.packages(&quot;ggplot2&quot;)</span>
+</pre></div>
+</div>
+</section>
+<section id="build-and-fit-a-model">
+<h3>Build and fit a model<a class="headerlink" href="#build-and-fit-a-model" title="Permalink to this headline">#</a></h3>
+<p>Let’s apply a standard two-way analysis of variance (ANOVA) model to the
+dataset as we did before. For this kind of model, ordinary least squares
+is a good initial approach.</p>
+<p>For Tidymodels, we need to specify the following:</p>
+<ol class="arabic simple">
+<li><p>The <em>functional form</em> using the <a class="reference external" href="https://parsnip.tidymodels.org/">parsnip
+package</a>.</p></li>
+<li><p>The <em>method for fitting</em> the model by setting the <strong>engine</strong>.</p></li>
+</ol>
+<p>We will specify the <em>functional form</em> or model type as <a class="reference external" href="https://parsnip.tidymodels.org/reference/linear_reg.html">“linear
+regression”</a>
+as there is a numeric outcome with a linear slope and intercept. We can
+do this with:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">linear_reg</span><span class="p">()</span><span class="w">  </span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## Linear Regression Model Specification (regression)
+## 
+## Computational engine: lm
+</pre></div>
+</div>
+<p>On its own, not that interesting. Next, we specify the method for
+<em>fitting</em> or training the model using the <code class="docutils literal notranslate"><span class="pre">set_engine()</span></code> function. The
+engine value is often a mash-up of the software that can be used to fit
+or train the model as well as the estimation method. For example, to use
+ordinary least squares, we can set the engine to be <code class="docutils literal notranslate"><span class="pre">lm</span></code>.</p>
+<p>The <a class="reference external" href="https://parsnip.tidymodels.org/reference/linear_reg.html">documentation
+page</a> for
+linear_reg() lists the possible engines. We’ll save this model object as
+lm_mod.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lm_mod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span>
+<span class="nf">linear_reg</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">   </span><span class="nf">set_engine</span><span class="p">(</span><span class="s">&quot;lm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, the model can be estimated or trained using the <code class="docutils literal notranslate"><span class="pre">fit()</span></code> function
+and the model formula we used for the ANOVA:</p>
+<p><code class="docutils literal notranslate"><span class="pre">width</span> <span class="pre">~</span> <span class="pre">initial_volume</span> <span class="pre">*</span> <span class="pre">food_regime</span></code></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lm_fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span>
+<span class="w">   </span><span class="n">lm_mod</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">   </span><span class="nf">fit</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">initial_volume</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">food_regime</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urchins</span><span class="p">)</span>
+
+<span class="n">lm_fit</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## parsnip model object
+## 
+## Fit time:  0ms 
+## 
+## Call:
+## stats::lm(formula = width ~ initial_volume * food_regime, data = data)
+## 
+## Coefficients:
+##                    (Intercept)                  initial_volume  
+##                      0.0331216                       0.0015546  
+##                 food_regimeLow                 food_regimeHigh  
+##                      0.0197824                       0.0214111  
+##  initial_volume:food_regimeLow  initial_volume:food_regimeHigh  
+##                     -0.0012594                       0.0005254
+</pre></div>
+</div>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">tidy()</span></code> function for our <code class="docutils literal notranslate"><span class="pre">lm</span></code> object to output model
+parameter estimates and their statistical properties. Similar to
+<code class="docutils literal notranslate"><span class="pre">summary()</span></code> but the results are more predictable and useful format.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">tidy</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## # A tibble: 6 x 5
+##   term                            estimate std.error statistic  p.value
+##   &lt;chr&gt;                              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)                     0.0331    0.00962      3.44  0.00100 
+## 2 initial_volume                  0.00155   0.000398     3.91  0.000222
+## 3 food_regimeLow                  0.0198    0.0130       1.52  0.133   
+## 4 food_regimeHigh                 0.0214    0.0145       1.47  0.145   
+## 5 initial_volume:food_regimeLow  -0.00126   0.000510    -2.47  0.0162  
+## 6 initial_volume:food_regimeHigh  0.000525  0.000702     0.748 0.457
+</pre></div>
+</div>
+<p>This output can be used to generate a dot-and-whisker plot of our
+regression results using the <code class="docutils literal notranslate"><span class="pre">dotwhisker</span></code> package:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">tidy</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">   </span><span class="nf">dwplot</span><span class="p">(</span><span class="n">dot_args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">whisker_args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">vline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                             </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;grey50&quot;</span><span class="p">,</span>
+<span class="w">                             </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><img alt="" src="statistics/anova-lm_files/figure-gfm/unnamed-chunk-21-1.png" /><!-- --></p>
+</section>
+</section>
+<section id="use-a-model-to-predict">
+<h2>Use a model to predict<a class="headerlink" href="#use-a-model-to-predict" title="Permalink to this headline">#</a></h2>
+<p>Say that it would be interesting to make a plot of the mean body size
+for urchins that started the experiment with an initial volume of 20 ml.</p>
+<p>First, lets make some new example data to predict for our graph:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">new_points</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">expand.grid</span><span class="p">(</span><span class="n">initial_volume</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span>
+<span class="w">                          </span><span class="n">food_regime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Initial&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Low&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;High&quot;</span><span class="p">))</span>
+<span class="n">new_points</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## # A tibble: 3 x 2
+##   initial_volume food_regime
+##            &lt;dbl&gt; &lt;fct&gt;      
+## 1             20 Initial    
+## 2             20 Low        
+## 3             20 High
+</pre></div>
+</div>
+<p>We can then use the <code class="docutils literal notranslate"><span class="pre">predict()</span></code> function to find the mean values at 20
+ml initial volume.</p>
+<p>With tidymodels, the types of predicted values are standardized so that
+we can use the same syntax to get these values.</p>
+<p>Let’s generate the mean suture width values:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean_pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">new_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_points</span><span class="p">)</span>
+<span class="n">mean_pred</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## # A tibble: 3 x 1
+##    .pred
+##    &lt;dbl&gt;
+## 1 0.0642
+## 2 0.0588
+## 3 0.0961
+</pre></div>
+</div>
+<p>When making predictions, the tidymodels convention is to always produce
+a tibble of results with standardized column names. This makes it easy
+to combine the original data and the predictions in a usable format:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">conf_int_pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">lm_fit</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                         </span><span class="n">new_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_points</span><span class="p">,</span>
+<span class="w">                         </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;conf_int&quot;</span><span class="p">)</span>
+<span class="n">conf_int_pred</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## # A tibble: 3 x 2
+##   .pred_lower .pred_upper
+##         &lt;dbl&gt;       &lt;dbl&gt;
+## 1      0.0555      0.0729
+## 2      0.0499      0.0678
+## 3      0.0870      0.105
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># now combine:</span>
+<span class="n">plot_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span>
+<span class="w">   </span><span class="n">new_points</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">   </span><span class="nf">bind_cols</span><span class="p">(</span><span class="n">mean_pred</span><span class="p">,</span><span class="w"> </span><span class="n">conf_int_pred</span><span class="p">)</span>
+
+<span class="n">plot_data</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>## # A tibble: 3 x 5
+##   initial_volume food_regime  .pred .pred_lower .pred_upper
+##            &lt;dbl&gt; &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+## 1             20 Initial     0.0642      0.0555      0.0729
+## 2             20 Low         0.0588      0.0499      0.0678
+## 3             20 High        0.0961      0.0870      0.105
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># and plot:</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">food_regime</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">   </span><span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.pred</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">   </span><span class="nf">geom_errorbar</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.pred_lower</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.pred_upper</span><span class="p">),</span>
+<span class="w">                 </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">   </span><span class="nf">labs</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;urchin size&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="" src="statistics/anova-lm_files/figure-gfm/unnamed-chunk-24-1.png" /><!-- --></p>
+<p>There is also an example of a <em>Bayesian</em> model in the tidymodels article
+I have not included here.</p>
+</section>
+<section id="close-project">
+<h2>Close project<a class="headerlink" href="#close-project" title="Permalink to this headline">#</a></h2>
+<p>Closing RStudio will ask you if you want to save your workspace and
+scripts. Saving your workspace is usually not recommended if you have
+all the necessary commands in your script.</p>
+</section>
+<section id="useful-links">
+<h2>Useful links<a class="headerlink" href="#useful-links" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>For statistical analysis in R:</p>
+<ul>
+<li><p>Steve Midway’s <a class="reference external" href="https://bookdown.org/steve_midway/DAR/part-ii-analysis.html">Data Analysis in R Part II
+Analysis</a></p></li>
+<li><p>Jeffrey A. Walker’s <a class="reference external" href="https://www.middleprofessor.com/files/applied-biostatistics_bookdown/_book/">Applied Statistics for Experiemental
+Biology</a></p></li>
+<li><p>Chester Ismay and Albert Y. Kim’s <a class="reference external" href="https://moderndive.com/">ModernDive Statistical
+Inference via Data Science</a></p></li>
+</ul>
+</li>
+<li><p>For tidymodels:</p>
+<ul>
+<li><p><a class="reference external" href="https://www.tidymodels.org/">tidymodels website</a></p></li>
+</ul>
+</li>
+<li><p>Our compilation of <a class="reference external" href="https://gitlab.com/stragu/DSH/blob/master/R/usefullinks.md">general R
+resources</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./statistics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-we-going-to-learn">
+   What are we going to learn?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#keep-in-mind">
+   Keep in mind
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#help">
+     Help
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#open-rstudio">
+   Open RStudio
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up">
+   Setting up
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-and-load-required-packages-for-first-sections">
+     Install and load required packages for first sections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-project">
+     New project
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-script">
+     Create a script
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introducing-our-data">
+     Introducing our data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#statistics-in-r-using-base-and-stats">
+   Statistics in R using base and stats
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-the-data">
+     Visualize the data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analysis-of-variance-anova">
+     Analysis of Variance (ANOVA)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pair-wise-comparison">
+       Pair-wise comparison
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#checking-the-model">
+       Checking the model
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-model">
+     Linear Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-inbetween">
+   The inbetween…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducing-tidymodels">
+   Introducing Tidymodels
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-more-packages">
+     Load more packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-and-fit-a-model">
+     Build and fit a model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-a-model-to-predict">
+   Use a model to predict
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#close-project">
+   Close project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#useful-links">
+   Useful links
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UQ Student-Staff Partnership
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
