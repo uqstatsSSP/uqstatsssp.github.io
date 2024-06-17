@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Anova Test(F-Test) &#8212; Statistics with Python</title>
+    <title>Confidence Intervals &#8212; Statistics with Python</title>
   
   
   
@@ -16,56 +16,56 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
-    <script src="../_static/tabs.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script src="../../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'statistics/8_Hypothesis_Testing_ANOVA';</script>
-    <link rel="shortcut icon" href="../_static/logo.png"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Hypothesis testing on real-world data" href="9_Hypothesis_testing_real_world_data.html" />
-    <link rel="prev" title="Chi-Square Test" href="7_Hypothesis_Testing_chisquare.html" />
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'statistics/python/5_Confidenceintervals';</script>
+    <link rel="shortcut icon" href="../../_static/logo.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="T Test" href="6_Hypothesis_Testing_t_test.html" />
+    <link rel="prev" title="Sampling and Central Limit Theorem" href="4_SamplingandCLT.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="None">
   </head>
@@ -90,7 +90,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
       
-<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
   
 
 
-<a class="navbar-brand logo" href="../Introduction/intro.html">
+<a class="navbar-brand logo" href="../../Introduction/intro.html">
 
   
   
@@ -120,8 +120,8 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
-    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image">
   
   
 </a>
@@ -167,8 +167,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="5_Confidenceintervals.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Confidence Intervals
                       </a>
                     </li>
@@ -193,8 +193,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="8_Hypothesis_Testing_ANOVA.html">
                         Anova Test(F-Test)
                       </a>
                     </li>
@@ -229,28 +229,28 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="anova-lm.html">
+                      <a class="nav-link nav-internal" href="../R/anova-lm.html">
                         RStats Introduction: ANOVA and linear regression
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../Machine_Learning/IntroToMLforHDRans.html">
+                      <a class="nav-link nav-internal" href="../../Machine_Learning/IntroToMLforHDRans.html">
                         Intro to Machine Learning
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../Machine_Learning/machine_learning_faqs.html">
+                      <a class="nav-link nav-internal" href="../../Machine_Learning/machine_learning_faqs.html">
                         Machine learning FAQs
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../demo_topic/demo.html">
+                      <a class="nav-link nav-internal" href="../../demo_topic/demo.html">
                         This is a demo project
                       </a>
                     </li>
@@ -300,10 +300,6 @@ const thebe_selector_output = ".output, .cell_output"
     </div>
   
 
-  
-  <label class="sidebar-toggle secondary-toggle" for="__secondary">
-      <span class="fa-solid fa-outdent"></span>
-  </label>
   
 
 </div>
@@ -356,8 +352,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="5_Confidenceintervals.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Confidence Intervals
                       </a>
                     </li>
@@ -382,8 +378,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="8_Hypothesis_Testing_ANOVA.html">
                         Anova Test(F-Test)
                       </a>
                     </li>
@@ -418,28 +414,28 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="anova-lm.html">
+                      <a class="nav-link nav-internal" href="../R/anova-lm.html">
                         RStats Introduction: ANOVA and linear regression
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../Machine_Learning/IntroToMLforHDRans.html">
+                      <a class="nav-link nav-internal" href="../../Machine_Learning/IntroToMLforHDRans.html">
                         Intro to Machine Learning
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../Machine_Learning/machine_learning_faqs.html">
+                      <a class="nav-link nav-internal" href="../../Machine_Learning/machine_learning_faqs.html">
                         Machine learning FAQs
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../demo_topic/demo.html">
+                      <a class="nav-link nav-internal" href="../../demo_topic/demo.html">
                         This is a demo project
                       </a>
                     </li>
@@ -481,7 +477,7 @@ const thebe_selector_output = ".output, .cell_output"
   
 
 
-<a class="navbar-brand logo" href="../Introduction/intro.html">
+<a class="navbar-brand logo" href="../../Introduction/intro.html">
 
   
   
@@ -492,14 +488,14 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
-    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image">
   
   
 </a>
     </div>
     <div class="sidebar-start-items__item">
-<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
@@ -510,7 +506,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../Introduction/intro.html">
+                <a class="reference internal" href="../../Introduction/intro.html">
                     Homepage
                 </a>
             </li>
@@ -531,29 +527,32 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="3_ExcerciseHaberman.html">Excercise on Heberman Cancer dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4_SamplingandCLT.html">Sampling and Central Limit Theorem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5_Confidenceintervals.html">Confidence Intervals</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Confidence Intervals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_Hypothesis_Testing_t_test.html">T Test</a></li>
 
 
 
 <li class="toctree-l1"><a class="reference internal" href="7_Hypothesis_Testing_chisquare.html">Chi-Square Test</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Anova Test(F-Test)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_Hypothesis_Testing_ANOVA.html">Anova Test(F-Test)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="9_Hypothesis_testing_real_world_data.html">Hypothesis testing on real-world data</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="HypothesisTesting.html">Hypothesis testing - Tiktok dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Example_statistics.html">Examples Statistics with Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="links.html">Statistics for Python Presentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="anova-lm.html">RStats Introduction: ANOVA and linear regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistics with R</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../R/anova-lm.html">RStats Introduction: ANOVA and linear regression</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning with Python</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Machine_Learning/IntroToMLforHDRans.html">Intro to Machine Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Machine_Learning/machine_learning_faqs.html">Machine learning FAQs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Machine_Learning/IntroToMLforHDRans.html">Intro to Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Machine_Learning/machine_learning_faqs.html">Machine learning FAQs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demo Topic</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../demo_topic/demo.html">This is a demo project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo_topic/demo.html">This is a demo project</a></li>
 </ul>
 
     </div>
@@ -600,7 +599,7 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-rocket"></i>
   </button>
   <ul class="dropdown-menu">
-      <li><a href="https://mybinder.org/v2/gh/uqstatsSSP/uqstatsssp.github.io/master?urlpath=tree/book/statistics/8_Hypothesis_Testing_ANOVA.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/uqstatsSSP/uqstatsssp.github.io/master?urlpath=tree/book/statistics/python/5_Confidenceintervals.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -610,13 +609,13 @@ title="Launch on Binder"
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_binder.svg">
+    <img src="../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
 </a>
       
-      <li><a href="https://colab.research.google.com/github/uqstatsSSP/uqstatsssp.github.io/blob/master/book/statistics/8_Hypothesis_Testing_ANOVA.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/uqstatsSSP/uqstatsssp.github.io/blob/master/book/statistics/python/5_Confidenceintervals.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -626,7 +625,7 @@ title="Launch on Colab"
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_colab.png">
+    <img src="../../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -671,7 +670,7 @@ title="Source repository"
 </a>
 </a>
       
-      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io/issues/new?title=Issue%20on%20page%20%2Fstatistics/8_Hypothesis_Testing_ANOVA.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io/issues/new?title=Issue%20on%20page%20%2Fstatistics/python/5_Confidenceintervals.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -686,7 +685,7 @@ title="Open an issue"
 </a>
 </a>
       
-      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io/edit/master/book/statistics/8_Hypothesis_Testing_ANOVA.ipynb" target="_blank"
+      <li><a href="https://github.com/uqstatsSSP/uqstatsssp.github.io/edit/master/book/statistics/python/5_Confidenceintervals.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -711,7 +710,7 @@ title="Edit this page"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
-      <li><a href="../_sources/statistics/8_Hypothesis_Testing_ANOVA.ipynb" target="_blank"
+      <li><a href="../../_sources/statistics/python/5_Confidenceintervals.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -744,9 +743,7 @@ title="Print to PDF"
       
   </ul>
 </div>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
-            <span class="fa-solid fa-list"></span>
-        </label>
+
     </div>
 </div>
             </div>
@@ -754,360 +751,111 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Anova Test(F-Test)</h1>
+    <h1>Confidence Intervals</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#one-way-f-test-anova">
-   One Way F-test(Anova) :-
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
 
             <article class="bd-article" role="main">
               
-  <section id="anova-test-f-test">
-<h1>Anova Test(F-Test)<a class="headerlink" href="#anova-test-f-test" title="Permalink to this headline">#</a></h1>
-<p>The t-test works well when dealing with two groups, but sometimes we want to compare more than two groups at the same time.</p>
-<p>For example, if we wanted to test whether petal_width age differs based on some categorical variable like species, we have to compare the means of each level or group the variable</p>
-<section id="one-way-f-test-anova">
-<h2>One Way F-test(Anova) :-<a class="headerlink" href="#one-way-f-test-anova" title="Permalink to this headline">#</a></h2>
-<p>It tell whether two or more groups are similar or not based on their mean similarity and f-score.</p>
-<p>Example : there are 3 different category of iris flowers and their petal width and need to check whether all 3 group are similar or not</p>
-<p>Null hypothesis: all three groups petal width have same mean,
-Alternate hypothesis: petal width from three different groups are different.</p>
+  <section id="confidence-intervals">
+<h1>Confidence Intervals<a class="headerlink" href="#confidence-intervals" title="Permalink to this headline">#</a></h1>
+<p>A confidence interval is a range of values, derived from a statistical estimation process, that is likely to contain the true value of an unknown population parameter</p>
+<p>Lets use the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> module in Python to compute the confidence interval:</p>
+<p>We’ll use knowledge from various studies that suggest the average height of an adult male is approximately 175 cm with a standard deviation of about 7 cm. We’ll generate a normally distributed sample of 100,1000, 10000 people’s heights using these parameters.</p>
+<p>In this example, np.random.normal generates a random sample from a normal (Gaussian) distribution. stats.sem computes the standard error of the mean, and stats.t.interval computes the confidence interval.</p>
+<p>Remember that the resulting confidence interval represents the range that we’re 95% confident contains the true mean height of the population from which we’re sampling. The larger the sample size, the narrower our confidence interval will be, all else being equal.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">df1</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;iris&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="c1"># Set a seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>sepal_length</th>
-      <th>sepal_width</th>
-      <th>petal_length</th>
-      <th>petal_width</th>
-      <th>species</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>5.1</td>
-      <td>3.5</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>setosa</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>4.9</td>
-      <td>3.0</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>setosa</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>4.7</td>
-      <td>3.2</td>
-      <td>1.3</td>
-      <td>0.2</td>
-      <td>setosa</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4.6</td>
-      <td>3.1</td>
-      <td>1.5</td>
-      <td>0.2</td>
-      <td>setosa</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5.0</td>
-      <td>3.6</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>setosa</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_anova</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[[</span><span class="s1">&#39;petal_width&#39;</span><span class="p">,</span><span class="s1">&#39;species&#39;</span><span class="p">]]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df_anova</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grps</span>
+<span class="c1"># Generate a random sample of 100 people&#39;s heights</span>
+<span class="n">heights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">175</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+
+<span class="c1"># Compute a 95% confidence interval for the mean</span>
+<span class="n">mean_height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+<span class="n">standard_error</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+
+<span class="n">confidence_interval</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mean_height</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">standard_error</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for the mean height is </span><span class="si">{</span><span class="n">confidence_interval</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;], dtype=object)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval for the mean height is (172.88222231494893, 178.9120181510856)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">grp</span><span class="p">:</span><span class="n">df_anova</span><span class="p">[</span><span class="s1">&#39;petal_width&#39;</span><span class="p">][</span><span class="n">df_anova</span><span class="o">.</span><span class="n">species</span> <span class="o">==</span> <span class="n">grp</span><span class="p">]</span> <span class="k">for</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">grps</span><span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d_data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Set a seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Generate a random sample of 1000 people&#39;s heights</span>
+<span class="n">heights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">175</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+
+<span class="c1"># Compute a 95% confidence interval for the mean</span>
+<span class="n">mean_height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+<span class="n">standard_error</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+
+<span class="n">confidence_interval</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mean_height</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">standard_error</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for the mean height is </span><span class="si">{</span><span class="n">confidence_interval</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;setosa&#39;: 0     0.2
- 1     0.2
- 2     0.2
- 3     0.2
- 4     0.2
- 5     0.4
- 6     0.3
- 7     0.2
- 8     0.2
- 9     0.1
- 10    0.2
- 11    0.2
- 12    0.1
- 13    0.1
- 14    0.2
- 15    0.4
- 16    0.4
- 17    0.3
- 18    0.3
- 19    0.3
- 20    0.2
- 21    0.4
- 22    0.2
- 23    0.5
- 24    0.2
- 25    0.2
- 26    0.4
- 27    0.2
- 28    0.2
- 29    0.2
- 30    0.2
- 31    0.4
- 32    0.1
- 33    0.2
- 34    0.2
- 35    0.2
- 36    0.2
- 37    0.1
- 38    0.2
- 39    0.2
- 40    0.3
- 41    0.3
- 42    0.2
- 43    0.6
- 44    0.4
- 45    0.3
- 46    0.2
- 47    0.2
- 48    0.2
- 49    0.2
- Name: petal_width, dtype: float64,
- &#39;versicolor&#39;: 50    1.4
- 51    1.5
- 52    1.5
- 53    1.3
- 54    1.5
- 55    1.3
- 56    1.6
- 57    1.0
- 58    1.3
- 59    1.4
- 60    1.0
- 61    1.5
- 62    1.0
- 63    1.4
- 64    1.3
- 65    1.4
- 66    1.5
- 67    1.0
- 68    1.5
- 69    1.1
- 70    1.8
- 71    1.3
- 72    1.5
- 73    1.2
- 74    1.3
- 75    1.4
- 76    1.4
- 77    1.7
- 78    1.5
- 79    1.0
- 80    1.1
- 81    1.0
- 82    1.2
- 83    1.6
- 84    1.5
- 85    1.6
- 86    1.5
- 87    1.3
- 88    1.3
- 89    1.3
- 90    1.2
- 91    1.4
- 92    1.2
- 93    1.0
- 94    1.3
- 95    1.2
- 96    1.3
- 97    1.3
- 98    1.1
- 99    1.3
- Name: petal_width, dtype: float64,
- &#39;virginica&#39;: 100    2.5
- 101    1.9
- 102    2.1
- 103    1.8
- 104    2.2
- 105    2.1
- 106    1.7
- 107    1.8
- 108    1.8
- 109    2.5
- 110    2.0
- 111    1.9
- 112    2.1
- 113    2.0
- 114    2.4
- 115    2.3
- 116    1.8
- 117    2.2
- 118    2.3
- 119    1.5
- 120    2.3
- 121    2.0
- 122    2.0
- 123    1.8
- 124    2.1
- 125    1.8
- 126    1.8
- 127    1.8
- 128    2.1
- 129    1.6
- 130    1.9
- 131    2.0
- 132    2.2
- 133    1.5
- 134    1.4
- 135    2.3
- 136    2.4
- 137    1.8
- 138    1.8
- 139    2.1
- 140    2.4
- 141    2.3
- 142    1.9
- 143    2.3
- 144    2.5
- 145    2.3
- 146    1.9
- 147    2.0
- 148    2.3
- 149    1.8
- Name: petal_width, dtype: float64}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval for the mean height is (173.40193918189914, 175.240359593395)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">f_oneway</span><span class="p">(</span><span class="n">d_data</span><span class="p">[</span><span class="s1">&#39;setosa&#39;</span><span class="p">],</span> <span class="n">d_data</span><span class="p">[</span><span class="s1">&#39;versicolor&#39;</span><span class="p">],</span> <span class="n">d_data</span><span class="p">[</span><span class="s1">&#39;virginica&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Set a seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Generate a random sample of 10000 people&#39;s heights</span>
+<span class="n">heights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">175</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+
+
+<span class="c1"># Compute a 95% confidence interval for the mean</span>
+<span class="n">mean_height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+<span class="n">standard_error</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+
+<span class="n">confidence_interval</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">mean_height</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">standard_error</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The 95% confidence interval for the mean height is </span><span class="si">{</span><span class="n">confidence_interval</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.169445839443116e-85
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% confidence interval for the mean height is (174.43310823303932, 175.01388016221273)
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">p</span><span class="o">&lt;</span><span class="mf">0.05</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;reject null hypothesis&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;accept null hypothesis&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>reject null hypothesis
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1123,7 +871,7 @@ Alternate hypothesis: petal width from three different groups are different.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./statistics"
+            path: "./statistics/python"
         },
         predefinedOutput: true
     }
@@ -1138,17 +886,17 @@ Alternate hypothesis: petal width from three different groups are different.</p>
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="7_Hypothesis_Testing_chisquare.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="4_SamplingandCLT.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Chi-Square Test</p>
+          <p class="prev-next-title">Sampling and Central Limit Theorem</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="9_Hypothesis_testing_real_world_data.html" title="next page">
+  <a class='right-next' id="next-link" href="6_Hypothesis_Testing_t_test.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Hypothesis testing on real-world data</p>
+      <p class="prev-next-title">T Test</p>
   </div>
   <i class="fa-solid fa-angle-right"></i>
   </a>
@@ -1158,27 +906,6 @@ Alternate hypothesis: petal width from three different groups are different.</p>
           </div>
           
           
-          
-            <div class="bd-sidebar-secondary bd-toc">
-              
-<div class="toc-item">
-  
-<div class="tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-</div>
-<nav id="bd-toc-nav" class="page-toc">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#one-way-f-test-anova">
-   One Way F-test(Anova) :-
-  </a>
- </li>
-</ul>
-
-</nav>
-</div>
-
-            </div>
           
           
         </div>
@@ -1224,8 +951,8 @@ Last updated on None.<br>
   
     
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>
