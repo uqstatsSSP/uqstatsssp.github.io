@@ -3,19 +3,21 @@ root: Introduction/intro
 parts:
 - caption: Statistics with Python
   chapters:
-  - file: statistics/1_ExploratoryDataAnalysis.ipynb
-  - file: statistics/3_DescriptiveStatistics.ipynb
-  - file: statistics/3_ExcerciseHaberman.ipynb
-  - file: statistics/4_SamplingandCLT.ipynb
-  - file: statistics/5_Confidenceintervals.ipynb
-  - file: statistics/6_Hypothesis_Testing_t_test.ipynb
-  - file: statistics/7_Hypothesis_Testing_chisquare.ipynb
-  - file: statistics/8_Hypothesis_Testing_ANOVA.ipynb
-  - file: statistics/9_Hypothesis_testing_real_world_data.ipynb
-  - file: statistics/HypothesisTesting.ipynb
-  - file: statistics/Example_statistics.md
-  - file: statistics/links.md
-  - file: statistics/anova-lm.md
+  - file: statistics/python/1_ExploratoryDataAnalysis.ipynb
+  - file: statistics/python/3_DescriptiveStatistics.ipynb
+  - file: statistics/python/3_ExcerciseHaberman.ipynb
+  - file: statistics/python/4_SamplingandCLT.ipynb
+  - file: statistics/python/5_Confidenceintervals.ipynb
+  - file: statistics/python/6_Hypothesis_Testing_t_test.ipynb
+  - file: statistics/python/7_Hypothesis_Testing_chisquare.ipynb
+  - file: statistics/python/8_Hypothesis_Testing_ANOVA.ipynb
+  - file: statistics/python/9_Hypothesis_testing_real_world_data.ipynb
+  - file: statistics/python/HypothesisTesting.ipynb
+  - file: statistics/python/Example_statistics.md
+  - file: statistics/python/links.md
+
+- caption: Statistics with R
+  - file: statistics/R/anova-lm.md
   
 - caption: Machine Learning with Python
   chapters:
