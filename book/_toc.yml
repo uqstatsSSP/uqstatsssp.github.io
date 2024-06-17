@@ -15,6 +15,7 @@ parts:
   - file: statistics/HypothesisTesting.ipynb
   - file: statistics/Example_statistics.md
   - file: statistics/links.md
+  - file: statistics/anova-lm.md
   
 - caption: Machine Learning with Python
   chapters:
