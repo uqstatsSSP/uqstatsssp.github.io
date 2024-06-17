@@ -17,6 +17,7 @@ parts:
   - file: statistics/python/links.md
 
 - caption: Statistics with R
+  chapters:
   - file: statistics/R/anova-lm.md
   
 - caption: Machine Learning with Python
