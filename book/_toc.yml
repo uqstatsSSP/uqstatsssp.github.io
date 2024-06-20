@@ -19,8 +19,8 @@ parts:
 - caption: Statistics with R
   chapters:
   - file: statistics/R/ANOVA-lm/anova-lm.md
-  - file: statistics/R/"Exploratory data analysis.ipynb"
-  - file: statistics/R/"Variable Selection.ipynb"
+  - file: "statistics/R/Exploratory data analysis.ipynb"
+  - file: "statistics/R/Variable Selection.ipynb"
   
 - caption: Machine Learning with Python
   chapters:
